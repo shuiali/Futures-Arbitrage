@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #0a0e14;
+  --color-bg-secondary: #151c28;
+  --color-bg-tertiary: #1a2234;
+  --color-border: #1e293b;
+  --color-text: #e2e8f0;
+  --color-text-muted: #94a3b8;
+  --color-success: #22c55e;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+  --color-primary: #0ea5e9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'JetBrains Mono', monospace;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2d3748;
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-success {
+    color: var(--color-success);
+  }
+  
+  .text-danger {
+    color: var(--color-danger);
+  }
+  
+  .text-warning {
+    color: var(--color-warning);
+  }
+  
+  .bg-success {
+    background-color: var(--color-success);
+  }
+  
+  .bg-danger {
+    background-color: var(--color-danger);
+  }
+  
+  .border-success {
+    border-color: var(--color-success);
+  }
+  
+  .border-danger {
+    border-color: var(--color-danger);
+  }
+
+  .glow-success {
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+  }
+
+  .glow-danger {
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+  }
+}
+
+/* Orderbook specific styles */
+.orderbook-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  position: relative;
+}
+
+.orderbook-row-bid::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(34, 197, 94, 0.15);
+  width: var(--depth-width, 0%);
+}
+
+.orderbook-row-ask::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(239, 68, 68, 0.15);
+  width: var(--depth-width, 0%);
+}
+
+/* Price animation */
+.price-up {
+  animation: flash-green 0.3s ease-out;
+}
+
+.price-down {
+  animation: flash-red 0.3s ease-out;
+}
+
+@keyframes flash-green {
+  0% { background-color: rgba(34, 197, 94, 0.4); }
+  100% { background-color: transparent; }
+}
+
+@keyframes flash-red {
+  0% { background-color: rgba(239, 68, 68, 0.4); }
+  100% { background-color: transparent; }
+}

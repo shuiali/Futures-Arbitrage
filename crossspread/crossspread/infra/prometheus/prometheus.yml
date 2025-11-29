@@ -1,0 +1,47 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+rule_files: []
+
+scrape_configs:
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Market Data Ingestion Service
+  - job_name: 'md-ingest'
+    static_configs:
+      - targets: ['md-ingest:9090']
+    metrics_path: /metrics
+    scrape_interval: 5s
+
+  # Backend API (NestJS)
+  - job_name: 'backend-api'
+    static_configs:
+      - targets: ['backend-api:8000']
+    metrics_path: /metrics
+    scrape_interval: 10s
+
+  # Simulation/Backtest Service
+  - job_name: 'sim-backtest'
+    static_configs:
+      - targets: ['sim-backtest:8002']
+    metrics_path: /metrics
+    scrape_interval: 10s
+
+  # Redis metrics (optional - requires redis_exporter)
+  # - job_name: 'redis'
+  #   static_configs:
+  #     - targets: ['redis-exporter:9121']
+
+  # PostgreSQL metrics (optional - requires postgres_exporter)
+  # - job_name: 'postgres'
+  #   static_configs:
+  #     - targets: ['postgres-exporter:9187']

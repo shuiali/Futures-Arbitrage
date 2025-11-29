@@ -1,0 +1,235 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String     @id @default(uuid())
+  username     String     @unique
+  passwordHash String     @map("password_hash")
+  role         String     @default("user")
+  isActive     Boolean    @default(true) @map("is_active")
+  expiresAt    DateTime?  @map("expires_at")
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+  
+  apiKeys      ApiKey[]
+  positions    Position[]
+  orders       Order[]
+  trades       Trade[]
+  auditLogs    AuditLog[]
+
+  @@map("users")
+}
+
+model Exchange {
+  id          String    @id @default(uuid())
+  name        String    @unique
+  displayName String    @map("display_name")
+  isActive    Boolean   @default(true) @map("is_active")
+  takerFee    Float     @default(0.0005) @map("taker_fee")
+  makerFee    Float     @default(0.0002) @map("maker_fee")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  apiKeys           ApiKey[]
+  instruments       Instrument[]
+  spreadsAsLong     Spread[]     @relation("LongExchange")
+  spreadsAsShort    Spread[]     @relation("ShortExchange")
+
+  @@map("exchanges")
+}
+
+model ApiKey {
+  id                   String   @id @default(uuid())
+  userId               String   @map("user_id")
+  exchangeId           String   @map("exchange_id")
+  apiKeyEncrypted      String   @map("api_key_encrypted")
+  apiSecretEncrypted   String   @map("api_secret_encrypted")
+  passphraseEncrypted  String?  @map("passphrase_encrypted")
+  label                String?
+  isActive             Boolean  @default(true) @map("is_active")
+  createdAt            DateTime @default(now()) @map("created_at")
+  updatedAt            DateTime @updatedAt @map("updated_at")
+
+  user     User     @relation(fields: [userId], references: [id])
+  exchange Exchange @relation(fields: [exchangeId], references: [id])
+
+  @@map("api_keys")
+}
+
+model Instrument {
+  id              String   @id @default(uuid())
+  exchangeId      String   @map("exchange_id")
+  symbol          String
+  baseAsset       String   @map("base_asset")
+  quoteAsset      String   @map("quote_asset")
+  contractType    String   @map("contract_type") // PERPETUAL, QUARTERLY, etc.
+  tickSize        Float    @map("tick_size")
+  lotSize         Float    @map("lot_size")
+  minNotional     Float?   @map("min_notional")
+  isActive        Boolean  @default(true) @map("is_active")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  exchange         Exchange  @relation(fields: [exchangeId], references: [id])
+  spreadsAsLong    Spread[]  @relation("LongInstrument")
+  spreadsAsShort   Spread[]  @relation("ShortInstrument")
+
+  @@unique([exchangeId, symbol])
+  @@map("instruments")
+}
+
+model Spread {
+  id               String   @id @default(uuid())
+  symbol           String   // Canonical symbol like BTC, ETH
+  longExchangeId   String   @map("long_exchange_id")
+  shortExchangeId  String   @map("short_exchange_id")
+  longInstrumentId String   @map("long_instrument_id")
+  shortInstrumentId String  @map("short_instrument_id")
+  spreadPercent    Float    @map("spread_percent")
+  longPrice        Float    @map("long_price")
+  shortPrice       Float    @map("short_price")
+  volume24h        Float?   @map("volume_24h")
+  fundingLong      Float?   @map("funding_long")
+  fundingShort     Float?   @map("funding_short")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  longExchange     Exchange    @relation("LongExchange", fields: [longExchangeId], references: [id])
+  shortExchange    Exchange    @relation("ShortExchange", fields: [shortExchangeId], references: [id])
+  longInstrument   Instrument  @relation("LongInstrument", fields: [longInstrumentId], references: [id])
+  shortInstrument  Instrument  @relation("ShortInstrument", fields: [shortInstrumentId], references: [id])
+  positions        Position[]
+  history          SpreadHistory[]
+
+  @@unique([longExchangeId, shortExchangeId, symbol])
+  @@map("spreads")
+}
+
+model SpreadHistory {
+  id            String   @id @default(uuid())
+  spreadId      String   @map("spread_id")
+  spreadPercent Float    @map("spread_percent")
+  longPrice     Float    @map("long_price")
+  shortPrice    Float    @map("short_price")
+  volume        Float?
+  timestamp     DateTime @default(now())
+
+  spread Spread @relation(fields: [spreadId], references: [id])
+
+  @@index([spreadId, timestamp])
+  @@map("spread_history")
+}
+
+// OHLC Candles for spread chart (aggregated from SpreadHistory)
+model SpreadCandle {
+  id            String   @id @default(uuid())
+  spreadId      String   @map("spread_id")
+  interval      String   // "1m", "5m", "15m", "1h", "4h", "1d"
+  openTime      DateTime @map("open_time")
+  closeTime     DateTime @map("close_time")
+  open          Float    // Opening spread percent
+  high          Float    // Highest spread percent
+  low           Float    // Lowest spread percent
+  close         Float    // Closing spread percent
+  volume        Float    @default(0) // Trading volume during candle
+  trades        Int      @default(0) // Number of spread updates in candle
+
+  @@unique([spreadId, interval, openTime])
+  @@index([spreadId, interval, openTime])
+  @@map("spread_candles")
+}
+
+model Position {
+  id                  String   @id @default(uuid())
+  userId              String   @map("user_id")
+  spreadId            String   @map("spread_id")
+  sizeInCoins         Float    @map("size_in_coins")
+  targetSizeInCoins   Float    @map("target_size_in_coins")
+  entryPriceLong      Float    @map("entry_price_long")
+  entryPriceShort     Float    @map("entry_price_short")
+  exitPriceLong       Float?   @map("exit_price_long")
+  exitPriceShort      Float?   @map("exit_price_short")
+  realizedPnl         Float?   @map("realized_pnl")
+  unrealizedPnl       Float?   @map("unrealized_pnl")
+  status              String   @default("OPENING") // OPENING, OPEN, CLOSING, CLOSED
+  mode                String   @default("sim") // live, sim
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+  closedAt            DateTime? @map("closed_at")
+
+  user     User     @relation(fields: [userId], references: [id])
+  spread   Spread   @relation(fields: [spreadId], references: [id])
+  orders   Order[]
+  trades   Trade[]
+
+  @@map("positions")
+}
+
+model Order {
+  id              String   @id @default(uuid())
+  userId          String   @map("user_id")
+  positionId      String?  @map("position_id")
+  exchangeOrderId String?  @map("exchange_order_id")
+  exchange        String
+  symbol          String
+  side            String   // BUY, SELL
+  type            String   // LIMIT, MARKET
+  price           Float
+  quantity        Float
+  filledQuantity  Float    @default(0) @map("filled_quantity")
+  status          String   @default("PENDING") // PENDING, PARTIAL, FILLED, CANCELLED, FAILED
+  sliceIndex      Int?     @map("slice_index")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  user     User      @relation(fields: [userId], references: [id])
+  position Position? @relation(fields: [positionId], references: [id])
+  trades   Trade[]
+
+  @@map("orders")
+}
+
+model Trade {
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  positionId String?  @map("position_id")
+  orderId    String?  @map("order_id")
+  exchange   String
+  symbol     String
+  side       String
+  price      Float
+  quantity   Float
+  fee        Float    @default(0)
+  feeCurrency String? @map("fee_currency")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  user     User      @relation(fields: [userId], references: [id])
+  position Position? @relation(fields: [positionId], references: [id])
+  order    Order?    @relation(fields: [orderId], references: [id])
+
+  @@map("trades")
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  action     String
+  entityType String   @map("entity_type")
+  entityId   String?  @map("entity_id")
+  details    String?  @db.Text
+  ipAddress  String?  @map("ip_address")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("audit_log")
+}

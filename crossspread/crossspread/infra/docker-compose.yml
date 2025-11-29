@@ -1,0 +1,187 @@
+version: '3.8'
+
+services:
+  # ==========================================================================
+  # Infrastructure
+  # ==========================================================================
+  postgres:
+    image: timescale/timescaledb:latest-pg15
+    container_name: crossspread-postgres
+    environment:
+      POSTGRES_USER: ${DB_USER:-crossspread}
+      POSTGRES_PASSWORD: ${DB_PASS:-changeme}
+      POSTGRES_DB: ${DB_NAME:-crossspread}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ../db/migrations/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-crossspread}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: crossspread-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ==========================================================================
+  # Backend Services
+  # ==========================================================================
+  backend-api:
+    build:
+      context: ../services/backend-api
+      dockerfile: Dockerfile
+    container_name: crossspread-backend
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://${DB_USER:-crossspread}:${DB_PASS:-changeme}@postgres:5432/${DB_NAME:-crossspread}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - JWT_SECRET=${JWT_SECRET:-supersecretjwtkey}
+      - JWT_EXPIRY=${JWT_EXPIRY:-86400}
+      - ENCRYPTION_KEY_BASE64=${ENCRYPTION_KEY_BASE64}
+      - SERVICE_SECRET=${SERVICE_SECRET:-crossspread-service-secret-dev}
+      - EXEC_SERVICE_HOST=execution
+      - EXEC_SERVICE_PORT=9000
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  md-ingest:
+    build:
+      context: ../services/md-ingest
+      dockerfile: Dockerfile
+    container_name: crossspread-md-ingest
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - METRICS_PORT=9090
+      - ENABLED_EXCHANGES=binance,bybit,okx,kucoin,mexc,bitget,gateio,bingx,coinex,lbank,htx
+      - LOG_LEVEL=info
+      - BACKEND_API_URL=http://backend-api:8000
+      - SERVICE_SECRET=${SERVICE_SECRET:-crossspread-service-secret-dev}
+    ports:
+      - "9091:9090"  # Metrics port
+    depends_on:
+      redis:
+        condition: service_healthy
+      backend-api:
+        condition: service_started
+
+  execution:
+    build:
+      context: ../services/execution-rust
+      dockerfile: Dockerfile
+    container_name: crossspread-execution
+    environment:
+      - RUST_LOG=info
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=${DB_USER:-crossspread}
+      - DB_PASS=${DB_PASS:-changeme}
+      - DB_NAME=${DB_NAME:-crossspread}
+      - ENCRYPTION_KEY_BASE64=${ENCRYPTION_KEY_BASE64}
+    ports:
+      - "9000:9000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  sim-backtest:
+    build:
+      context: ../services/sim-backtest
+      dockerfile: Dockerfile
+    container_name: crossspread-sim
+    environment:
+      - DATABASE_URL=postgresql://${DB_USER:-crossspread}:${DB_PASS:-changeme}@postgres:5432/${DB_NAME:-crossspread}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PORT=8002
+    ports:
+      - "8002:8002"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # ==========================================================================
+  # Frontend
+  # ==========================================================================
+  web-frontend:
+    build:
+      context: ../web/web-frontend
+      dockerfile: Dockerfile
+    container_name: crossspread-frontend
+    environment:
+      - VITE_API_URL=http://localhost:8000
+      - VITE_WS_URL=ws://localhost:8000
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend-api
+
+  # ==========================================================================
+  # Observability
+  # ==========================================================================
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: crossspread-prometheus
+    ports:
+      - "9092:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.enable-lifecycle'
+    profiles:
+      - observability
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: crossspread-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on:
+      - prometheus
+    profiles:
+      - observability
+
+volumes:
+  postgres_data:
+  redis_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  default:
+    name: crossspread-network

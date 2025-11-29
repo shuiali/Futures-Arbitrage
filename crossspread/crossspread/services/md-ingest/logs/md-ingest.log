@@ -1,0 +1,1151 @@
+[90m12:21AM[0m [32mINF[0m Starting market data ingestion service [36mbackend_api=[0mhttp://localhost:8000 [36mexchanges=[0mbinance,bybit,okx,kucoin,mexc,bitget,gateio,bingx,coinex,lbank,htx [36mmetrics=[0m:9090 [36mredis=[0mlocalhost:6379 [36mtwo_phase=[0mtrue
+[90m12:21AM[0m [32mINF[0m Starting metrics server [36maddr=[0m:9090
+[90m12:21AM[0m [32mINF[0m Added Binance connector
+[90m12:21AM[0m [32mINF[0m Added Bybit connector
+[90m12:21AM[0m [32mINF[0m Added OKX connector
+[90m12:21AM[0m [32mINF[0m Found API credentials, will use authenticated endpoints [36mexchange=[0mkucoin
+[90m12:21AM[0m [32mINF[0m Added KuCoin connector (credentials available for future use)
+[90m12:21AM[0m [32mINF[0m Found API credentials, will use authenticated endpoints [36mexchange=[0mmexc
+[90m12:21AM[0m [32mINF[0m Added MEXC connector with API credentials
+[90m12:21AM[0m [32mINF[0m Added Bitget connector
+[90m12:21AM[0m [32mINF[0m Found API credentials, will use authenticated endpoints [36mexchange=[0mgateio
+[90m12:21AM[0m [32mINF[0m Added Gate.io connector with API credentials
+[90m12:21AM[0m [32mINF[0m Found API credentials, will use authenticated endpoints [36mexchange=[0mbingx
+[90m12:21AM[0m [32mINF[0m Added BingX connector with API credentials
+[90m12:21AM[0m [32mINF[0m Added CoinEx connector
+[90m12:21AM[0m [32mINF[0m Added LBank connector
+[90m12:21AM[0m [32mINF[0m Added HTX connector
+[90m12:21AM[0m [32mINF[0m Using two-phase approach: REST first, then selective WebSocket
+[90m12:21AM[0m [32mINF[0m Phase 1: Loading data from REST APIs [36mexchanges=[0m11
+[90m12:21AM[0m [33mDBG[0m Fetching exchange data [36mexchange=[0mhtx
+[90m12:21AM[0m [33mDBG[0m Fetching exchange data [36mexchange=[0mmexc
+[90m12:21AM[0m [33mDBG[0m Fetching exchange data [36mexchange=[0mbingx
+[90m12:21AM[0m [33mDBG[0m Fetching exchange data [36mexchange=[0mgateio
+[90m12:21AM[0m [33mDBG[0m Fetching exchange data [36mexchange=[0mbitget
+[90m12:21AM[0m [33mDBG[0m Fetching exchange data [36mexchange=[0mcoinex
+[90m12:21AM[0m [33mDBG[0m Fetching exchange data [36mexchange=[0mokx
+[90m12:21AM[0m [33mDBG[0m Fetching exchange data [36mexchange=[0mkucoin
+[90m12:21AM[0m [33mDBG[0m Fetching exchange data [36mexchange=[0mbinance
+[90m12:21AM[0m [33mDBG[0m Fetching exchange data [36mexchange=[0mlbank
+[90m12:21AM[0m [33mDBG[0m Fetching exchange data [36mexchange=[0mbybit
+[90m12:21AM[0m [33mDBG[0m Fetched instruments [36mexchange=[0mmexc [36minstruments=[0m828
+[90m12:21AM[0m [33mDBG[0m Fetched price tickers [36mexchange=[0mmexc [36mtickers=[0m833
+[90m12:21AM[0m [33mDBG[0m Fetched instruments [36mexchange=[0mbybit [36minstruments=[0m500
+[90m12:21AM[0m [33mDBG[0m Fetched instruments [36mexchange=[0mbinance [36minstruments=[0m575
+[90m12:21AM[0m [33mDBG[0m Fetched instruments [36mexchange=[0mhtx [36minstruments=[0m225
+[90m12:21AM[0m [33mDBG[0m Fetched instruments [36mexchange=[0mokx [36minstruments=[0m253
+[90m12:21AM[0m [1m[31mERR[0m[0m Failed to fetch exchange data [36merror=[0m[31m"fetch instruments: json: cannot unmarshal number into Go struct field .data.makerFeeRate of type string"[0m [36mexchange=[0mbingx
+[90m12:21AM[0m [32mINF[0m Fetched Bybit price tickers [36mcount=[0m552
+[90m12:21AM[0m [33mDBG[0m Fetched price tickers [36mexchange=[0mbybit [36mtickers=[0m552
+[90m12:21AM[0m [33mDBG[0m Fetched MEXC asset info from contracts [36mcount=[0m744
+[90m12:21AM[0m [1m[31mERR[0m[0m Failed to fetch exchange data [36merror=[0m[31m"fetch instruments: json: cannot unmarshal number into Go struct field .data.makerFeeRate of type string"[0m [36mexchange=[0mkucoin
+[90m12:21AM[0m [33mDBG[0m Fetched instruments [36mexchange=[0mbitget [36minstruments=[0m573
+[90m12:21AM[0m [33mDBG[0m Fetched price tickers [36mexchange=[0mokx [36mtickers=[0m253
+[90m12:21AM[0m [32mINF[0m Fetched Binance price tickers [36mcount=[0m636
+[90m12:21AM[0m [33mDBG[0m Fetched price tickers [36mexchange=[0mbinance [36mtickers=[0m636
+[90m12:21AM[0m [33mDBG[0m Fetched price tickers [36mexchange=[0mbitget [36mtickers=[0m573
+[90m12:21AM[0m [32mINF[0m Fetched Bybit asset info [36mcount=[0m430
+[90m12:21AM[0m [33mDBG[0m Fetched instruments [36mexchange=[0mcoinex [36minstruments=[0m246
+[90m12:21AM[0m [32mINF[0m Fetched Binance asset info [36mcount=[0m536
+[90m12:21AM[0m [1m[31mERR[0m[0m Failed to fetch exchange data [36merror=[0m[31m"fetch tickers: json: cannot unmarshal string into Go struct field .ticks.close of type float64"[0m [36mexchange=[0mhtx
+[90m12:21AM[0m [1m[31mERR[0m[0m Failed to fetch exchange data [36merror=[0m[31m"fetch instruments: failed to fetch instruments: parsing response failed: json: cannot unmarshal object into Go value of type []lbank.ContractInstrument"[0m [36mexchange=[0mlbank
+[90m12:21AM[0m [33mDBG[0m Fetched Bitget asset info from contracts [36mcount=[0m573
+[90m12:21AM[0m [1m[31mERR[0m[0m Failed to fetch exchange data [36merror=[0m[31m"fetch tickers: failed to fetch tickers: HTTP error: status=403, body=<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>ERROR: The request could not be satisfied</TITLE>\n</HEAD><BODY>\n<H1>403 ERROR</H1>\n<H2>The request could not be satisfied.</H2>\n<HR noshade size=\"1px\">\nRequest blocked.\nWe can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.\n<BR clear=\"all\">\nIf you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation.\n<BR clear=\"all\">\n<HR noshade size=\"1px\">\n<PRE>\nGenerated by cloudfront (CloudFront)\nRequest ID: zxYjrk4DS-LMjGbyw5ARiP5eeUJ7nDY1CLDrbH1NFit8sXZantaiEQ==\n</PRE>\n<ADDRESS>\n</ADDRESS>\n</BODY></HTML>"[0m [36mexchange=[0mcoinex
+[90m12:21AM[0m [33mDBG[0m Fetched instruments [36mexchange=[0mgateio [36minstruments=[0m598
+[90m12:21AM[0m [32mINF[0m API credentials available [36mcredential_count=[0m1 [36mexchange=[0mbinance
+[90m12:21AM[0m [32mINF[0m API credentials available [36mcredential_count=[0m1 [36mexchange=[0mbybit
+[90m12:21AM[0m [32mINF[0m API credentials available [36mcredential_count=[0m1 [36mexchange=[0mokx
+[90m12:21AM[0m [32mINF[0m API credentials available [36mcredential_count=[0m1 [36mexchange=[0mbitget
+[90m12:21AM[0m [32mINF[0m API credentials available [36mcredential_count=[0m1 [36mexchange=[0mmexc
+[90m12:21AM[0m [32mINF[0m API credentials available [36mcredential_count=[0m1 [36mexchange=[0mgateio
+[90m12:21AM[0m [32mINF[0m API credentials available [36mcredential_count=[0m1 [36mexchange=[0mkucoin
+[90m12:21AM[0m [32mINF[0m API credentials available [36mcredential_count=[0m1 [36mexchange=[0mbingx
+[90m12:21AM[0m [32mINF[0m API credentials available [36mcredential_count=[0m1 [36mexchange=[0mlbank
+[90m12:21AM[0m [32mINF[0m API credentials available [36mcredential_count=[0m1 [36mexchange=[0mcoinex
+[90m12:21AM[0m [32mINF[0m API credentials available [36mcredential_count=[0m1 [36mexchange=[0mhtx
+[90m12:21AM[0m [33mDBG[0m Fetched price tickers [36mexchange=[0mgateio [36mtickers=[0m598
+[90m12:21AM[0m [32mINF[0m Aggregated token data across exchanges [36mtokens=[0m1484
+[90m12:21AM[0m [32mINF[0m Discovered preliminary spreads from REST data [36mmin_bps=[0m5 [36mspreads=[0m933
+[90m12:21AM[0m [31mWRN[0m Exchange fetch error (non-fatal) [36merror=[0m[31m"bingx: fetch instruments: json: cannot unmarshal number into Go struct field .data.makerFeeRate of type string"[0m
+[90m12:21AM[0m [31mWRN[0m Exchange fetch error (non-fatal) [36merror=[0m[31m"kucoin: fetch instruments: json: cannot unmarshal number into Go struct field .data.makerFeeRate of type string"[0m
+[90m12:21AM[0m [31mWRN[0m Exchange fetch error (non-fatal) [36merror=[0m[31m"htx: fetch tickers: json: cannot unmarshal string into Go struct field .ticks.close of type float64"[0m
+[90m12:21AM[0m [31mWRN[0m Exchange fetch error (non-fatal) [36merror=[0m[31m"lbank: fetch instruments: failed to fetch instruments: parsing response failed: json: cannot unmarshal object into Go value of type []lbank.ContractInstrument"[0m
+[90m12:21AM[0m [31mWRN[0m Exchange fetch error (non-fatal) [36merror=[0m[31m"coinex: fetch tickers: failed to fetch tickers: HTTP error: status=403, body=<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n<TITLE>ERROR: The request could not be satisfied</TITLE>\n</HEAD><BODY>\n<H1>403 ERROR</H1>\n<H2>The request could not be satisfied.</H2>\n<HR noshade size=\"1px\">\nRequest blocked.\nWe can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.\n<BR clear=\"all\">\nIf you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation.\n<BR clear=\"all\">\n<HR noshade size=\"1px\">\n<PRE>\nGenerated by cloudfront (CloudFront)\nRequest ID: zxYjrk4DS-LMjGbyw5ARiP5eeUJ7nDY1CLDrbH1NFit8sXZantaiEQ==\n</PRE>\n<ADDRESS>\n</ADDRESS>\n</BODY></HTML>"[0m
+[90m12:21AM[0m [32mINF[0m Phase 1: REST data loading complete [36mduration=[0m9907.230667 [36mexchanges=[0m6
+[90m12:21AM[0m [32mINF[0m Phase 1 complete: preliminary spreads discovered [36mspreads=[0m933
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXAN [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m14.771048744460256
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXAN [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m29.58579881656684
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXAN [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m11.094674556212565
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXAN [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m11.094674556212565
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXAN [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m18.470631695603235
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXAN [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m18.470631695603235
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXVS [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m6.36672325976255
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCOTI [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m6.620324395895129
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCOTI [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m6.620324395895129
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPIEVERSE [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m32.83657489265025
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPIEVERSE [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m5.051780752716178
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPIEVERSE [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m25.23977788995459
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPIEVERSE [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m32.83657489265025
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPIEVERSE [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m5.051780752716178
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPIEVERSE [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m20.687219334981265
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXCN [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m1234.3434343434333
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXCN [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m1234.3434343434333
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXCN [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m1238.3838383838379
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOPEN [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m12.401818933443352
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNEAR [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m5.154639175258309
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNEAR [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m5.154639175258309
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCROSS [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m12.331469911213201
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCROSS [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m9.043077934889757
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCAKE [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m5.2637972223350165
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mREZ [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m11.331444759205846
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mREZ [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m12.747875354106883
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRESOLV [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m5.876591576885846
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRESOLV [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m18.698946954039535
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRESOLV [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m54.128530656430954
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRESOLV [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m84.20009905894041
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRESOLV [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m119.86131748390318
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRESOLV [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m64.3883110450716
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRESOLV [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m89.1972249752228
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRESOLV [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m124.8761149653119
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRESOLV [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m69.37561942517267
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAPI3 [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m12.743491716731
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAPI3 [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m5.461496450026707
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAPI3 [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m9.099181073704385
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAPI3 [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m12.743491716731
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAPI3 [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m5.461496450026707
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIOTX [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m22.050716648292084
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIOTX [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m11.0132158590323
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIOTX [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m11.0132158590323
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSTRK [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m6.393861892582415
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSTRK [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m6.393861892582415
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSTRK [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m6.393861892582415
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCFX [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m5.96943648519514
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCFX [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m5.96943648519514
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXION [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m524.355727692537
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXION [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m491.58349471175376
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXION [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m24.120317820658837
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHOME [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m17.611026033689676
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHOME [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m7.656967840734757
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHOME [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m11.485451761102135
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHOME [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m9.946442234123278
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGLM [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m9.838558204015829
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGLM [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m21.91315236348958
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGLM [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m13.404825737265181
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGLM [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m13.404825737265181
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGLM [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m11.168192986374816
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mENJ [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m5.966587112171593
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mENJ [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m5.966587112171593
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mENJ [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m5.966587112171593
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSSV [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m7.794232268120732
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSSV [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m7.794232268120732
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSSV [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m10.392309690828796
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mEDEN [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m7.4349442379187725
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mEDEN [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m16.12903225806343
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mEDEN [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m19.851116625309363
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mEDEN [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m7.4349442379187725
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNIL [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m7.284079084287265
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDOLO [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m7.91139240506297
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDOLO [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m9.889240506329397
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDOLO [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m5.9335443037979125
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHFT [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m7.8740157480302635
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHFT [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m7.8740157480302635
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEREBRO [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m16.155088852988033
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEREBRO [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m16.19433198380641
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEREBRO [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m16.19433198380641
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEREBRO [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m40.48582995951393
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEREBRO [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m24.252223120451717
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBLUR [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m7.655014034191199
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBLUR [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m5.102040816326323
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBLUR [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m5.102040816326323
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBANANAS31 [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m5.428881650380743
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZRC [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m21.786492374726777
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZRC [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m21.786492374726777
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDODO [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m52.98013245033126
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mALT [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m7.062146892655079
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mALT [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m7.062146892655079
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWAL [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m6.180469715697712
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWAL [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m6.180469715697712
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWAL [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m6.180469715697712
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPOPCAT [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m6.408495834477764
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPOPCAT [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m9.157509157508148
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGALA [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m5.07872016251972
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSAPIEN [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m7.616146230006778
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSAPIEN [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m5.330084519910662
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSAPIEN [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m11.42857142857017
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSNT [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m12559.999999999998
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSNT [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m12559.999999999998
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSNT [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m12587.800369685765
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mANKR [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m11.056511056511459
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mANKR [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m23.37023370233692
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mANKR [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m12.300123001229512
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mALCH [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m8.703220191470256
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mALCH [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m40.83818705228624
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mALCH [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m14.728526477873599
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mALCH [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m14.021499632771297
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTRUTH [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m22.919465739351338
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTRUTH [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m25.685608156169508
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSAND [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m7.415647015202633
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mESPORTS [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m17.999999999999496
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mESPORTS [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m35.77777777777778
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mESPORTS [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m10.000000000000133
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mESPORTS [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m12.859455025165175
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mESPORTS [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m13.969577364850313
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDUSK [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m38.32116788321201
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDUSK [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m41.98612632347591
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPNUT [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m6.615214994486286
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPNUT [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m5.5126791620721605
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMLN [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m20.73515551366658
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMLN [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m20.73515551366658
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRONIN [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m10.67235859124749
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLAYER [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m29.0215588723054
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLAYER [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m33.18125259228516
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLAYER [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m29.0215588723054
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIOST [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m10.319917440660726
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIOST [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m10.319917440660726
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIOST [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m10.319917440660726
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIOST [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m15.487867836862062
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCVC [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m12.605042016806205
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCVC [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m12.605042016806205
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBRETT [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m5.5959709009510865
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBRETT [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m11.191941801902173
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBRETT [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m5.592841163310734
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBRETT [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m5.592841163310734
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBRETT [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m5.592841163310734
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mELX [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m101.0101010101004
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mELX [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m117.42424242424245
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBB [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m7.403751233959093
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBB [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m6.16903146206149
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mETHW [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m7.892659826362368
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mETHW [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m7.892659826362368
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHOOK [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m8.125126955108342
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mG [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m41.13687359760555
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mG [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m33.6322869955153
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNOM [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m8.40336134453747
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNOM [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m16.820857863751826
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCOMMON [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m24.726245143057675
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCOMMON [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m24.726245143057675
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCOMMON [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m14.129282938889661
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBAND [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m5.037783375314306
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBAND [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m5.037783375314306
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBAND [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m5.037783375314306
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBAND [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m5.037783375314306
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCATI [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m12.666244458519731
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCATI [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m11.082963901203392
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCATI [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m6.333122229260965
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCATI [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m20.598954206941073
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCATI [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m19.01441926794408
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCATI [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m14.26081445095971
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCPOOL [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m83.44030808729171
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACH [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m9.812579727209883
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACH [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m6.868805809047259
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACH [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m10.794896957802349
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACH [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m5.888125613347199
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACH [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m7.8508341511296
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPIPPIN [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m11.572160687717078
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPIPPIN [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m9.918994875185577
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPIPPIN [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m9.917355371901571
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPIPPIN [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m8.264462809917593
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPENDLE [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m6.612784717120668
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPYTH [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m5.056890012642019
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPYTH [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m5.056890012642019
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPORTAL [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m10.67235859124823
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPORTAL [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m10.67235859124823
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPORTAL [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m10.67235859124823
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mVET [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m5.730659025787483
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mVET [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m5.014326647564514
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRECALL [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m18.099547511312736
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRECALL [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m9.049773755656368
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRECALL [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m9.041591320072593
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRECALL [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m9.041591320072593
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mEPT [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m11.48985063194165
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCTK [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m19.577133907595943
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCTK [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m23.501762632197
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCTK [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m19.577133907595943
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXPL [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m9.149130832571169
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSEI [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m7.117437722419144
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSEI [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m7.117437722419144
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIN [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m10.011262670505646
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIN [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m7.506568247216877
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMITO [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m23.630504833512134
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMITO [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m42.96455424274947
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMITO [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m36.519871106336524
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMITO [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m6.42123287671281
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAWE [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m15.804030027657781
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAWE [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m21.347248576850873
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAWE [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m5.5344718532574815
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDYM [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m11.516314779270164
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDYM [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m9.595087315294844
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDYM [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m9.595087315294844
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mATH [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m6.045949214026355
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mATH [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m6.045949214026355
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mATH [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m6.045949214026355
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mATH [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m6.045949214026355
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mATH [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m6.045949214026355
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mATH [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m6.045949214026355
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSNX [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m8.547008547009504
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSNX [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m8.547008547009504
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSNX [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m6.837606837607982
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSIGN [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m24.777006937562653
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSIGN [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m14.866204162536562
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSIGN [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m27.26146220570159
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSIGN [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m17.34820322180932
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSIGN [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m29.74714923153249
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSIGN [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m19.831432821020513
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCOMP [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m6.609385327164433
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCOMP [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m6.609385327164433
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCOAI [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m7.303268212526329
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCOAI [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m9.129085265657404
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUB [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m8.573620323991781
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUB [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m40.16064257028058
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUB [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m8.573620323991781
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUB [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m40.16064257028058
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUB [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m31.559963931470076
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBSV [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m9.402914903619921
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBSV [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m9.402914903619921
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBSV [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m18.823529411764305
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBSV [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m9.411764705882153
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMOODENG [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m13.53512981419946
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMOODENG [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m13.53512981419946
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMOODENG [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m14.767413241446606
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMOODENG [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m15.99999999999892
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPEOPLE [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m11.574074074073938
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPEOPLE [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m5.7915057915065615
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPEOPLE [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m19.305019305020192
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPEOPLE [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m9.652509652510934
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPEOPLE [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m9.643201542911854
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHOLO [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m5.291005291004708
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHOLO [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m5.291005291004708
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIP [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m17.011834319526393
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIP [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m11.094674556211794
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIP [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m6.6568047337270775
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIP [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m5.54098481770181
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIP [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m13.30868761552698
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIP [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m7.39371534195852
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHYPER [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m7.163323782234167
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCYBER [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m6.293266205161182
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXNY [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m12.422360248446699
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXNY [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m9.945300845349735
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXNY [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m19.89060169069947
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSTO [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m16.411851084045583
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSTO [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m19.873844292749858
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSUI [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m5.145356315925739
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUSUAL [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m10.11122345803918
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUSUAL [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m10.11122345803918
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIOTA [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m8.488964346349988
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIOTA [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m8.488964346349988
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSAGA [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m10.227272727273494
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSAGA [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m21.615472127417036
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSAGA [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m11.376564277586915
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOL [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m24.691358024690352
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOL [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m19.75308641975228
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOL [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m14.800197335963878
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOL [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m9.866798223975918
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOL [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m9.861932938855615
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBNB [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m11.535446298577364
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBNB [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m9.855526934707083
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBNB [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m9.293472175567432
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBNB [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m7.613929011308364
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBNB [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m12.656810035842241
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBNB [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m10.976702508960779
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSPK [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m6.301197227472964
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSPK [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m6.301197227472964
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCARV [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m14.357501794688135
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCARV [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m14.357501794688135
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCARV [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m7.178750897343071
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mETC [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m6.36672325976255
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mETC [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m7.781550650821314
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mETC [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m8.488964346350066
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMEW [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m8.090614886732467
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGRIFFAIN [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m6.934812760055195
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGRIFFAIN [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m20.804438280165584
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGRIFFAIN [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m6.934812760055195
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGIGGLE [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m6.498781478473803
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGIGGLE [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m6.498781478473803
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDAM [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m22.80501710376322
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDAM [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m26.605853287723534
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSKYAI [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m17.88109074653481
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSKYAI [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m26.82163611980221
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSKYAI [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m13.410818059901105
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPEAQ [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m18.210789893012446
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPEAQ [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m22.763487366265164
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPOWR [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m16.286644951139778
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPOWR [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m5.422993492407212
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPOWR [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m16.286644951139778
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mB [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m20.49780380673436
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mB [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m5.847953216373624
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSPELL [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m7.401924500370276
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACE [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m120.90483619344741
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACE [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m66.30265210608343
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACE [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m19.500780031201266
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACE [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m15.600624024959279
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACE [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m27.047913446678283
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACE [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m101.20669521214445
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACE [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m46.71078240560447
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACE [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m89.42457231726378
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACE [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m34.99222395023374
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mALGO [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m6.788866259335828
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mALGO [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m6.788866259335828
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mALGO [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m6.788866259335828
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPUNDIX [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m20.040080160320656
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPUNDIX [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m20.040080160320656
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPUNDIX [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m20.040080160320656
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSAHARA [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m17.14005876591592
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSAHARA [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m19.588638589617226
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSAHARA [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m11.018609206659264
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSAHARA [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m17.14005876591592
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSAHARA [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m19.588638589617226
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSAHARA [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m11.018609206659264
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCVX [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m5.224660397074775
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCVX [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m10.454783063251446
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCVX [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m10.454783063251446
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPRCL [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m6.761325219743967
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPRCL [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m6.761325219743967
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCLANKER [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m7.428040854224539
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCLANKER [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m7.428040854224539
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPLUME [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m35.15624999999992
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPLUME [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m58.59374999999897
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPLUME [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m15.624999999999364
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPLUME [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m19.455252918287144
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPLUME [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m35.15624999999992
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPLUME [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m58.59374999999897
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPLUME [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m15.624999999999364
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPLUME [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m15.594541910332103
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPLUME [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m38.986354775828225
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAIA [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m305.35936850851664
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAIA [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m303.28209389281267
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAIA [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m94.72372247611152
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAIA [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m200.8923981658545
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAIA [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m198.83618119383982
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mVIRTUAL [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m6.268937415108608
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mVIRTUAL [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m8.360330233044444
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mVIRTUAL [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m6.268937415108608
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m42 [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m9.973404255319897
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNMR [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m7.630351844001984
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m1000RATS [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m5.181347150258856
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m1000RATS [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m5.181347150258856
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m1000RATS [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m5.181347150258856
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mT [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m8.635578583764762
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mT [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m17.286084701814335
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mT [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m8.635578583764762
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCHZ [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m17.135023989032884
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCHZ [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m13.70801919122631
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCHZ [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m10.281014393419733
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCHZ [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m17.135023989032884
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPROMPT [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m5.036937541973692
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPROMPT [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m10.073875083948549
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPROMPT [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m6.713662302785897
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXMR [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m8.030112923462815
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXMR [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m11.04140526976155
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXMR [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m5.517656500801827
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPENGU [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m7.689678742309118
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPENGU [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m9.398496240600528
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mJTO [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m5.458515283844214
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKAITO [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m8.065600215083277
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKAITO [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m18.81973383519232
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKAITO [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m6.720430107527633
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKAITO [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m17.473118279569462
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKAITO [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m9.401020682244464
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKAITO [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m8.065600215083277
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKAITO [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m18.81973383519232
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLYN [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m22.44354046850799
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLYN [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m15.42993407209973
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSWELL [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m14.662756598240826
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSWELL [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m22.010271460014412
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHEMI [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m8.609556607834346
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLIGHT [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m30.262909022130625
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLIGHT [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m11.348590883299508
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLIGHT [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m30.262909022130625
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLIGHT [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m6.604396641191837
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLIGHT [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m6.604396641191837
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAXS [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m17.226528854435845
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAXS [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m8.613264427216967
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAXS [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m8.60585197934692
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAXS [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m17.226528854435845
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAXS [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m8.613264427216967
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPYR [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m40.12841091492692
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPYR [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m35.313001605136115
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMETIS [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m6.618133686300322
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMETIS [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m21.1780277961615
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMETIS [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m7.941760423560858
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMETIS [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m9.254362771020192
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mVELODROME [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m6.242197253432955
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNFP [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m34.54773869346702
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNFP [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m12.562814070351248
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNFP [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m31.407035175880292
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNFP [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m6.263701847791789
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mINJ [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m6.631299734747281
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mINJ [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m9.946949602122393
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mINJ [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m6.631299734747281
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mINJ [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m6.629101756712707
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mQUICK [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m14.947683109118776
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mQUICK [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m14.947683109118776
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mQUICK [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m22.421524663677516
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mQUICK [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m7.462686567163875
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDOOD [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m13.914656771799464
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDOOD [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m18.56148491879396
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDOOD [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m6.9605568445484876
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mICX [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m11.45311381532006
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mICX [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m7.158196134575285
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mICX [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m5.726556907659037
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mYALA [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m6.042296072507307
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mYALA [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m6.042296072507307
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPROM [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m6.654097815238138
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPROM [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m34.4750889679702
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPROM [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m19.572953736654622
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGLMR [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m81396.33286318759
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXDC [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m23.92344497607622
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXDC [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m16.550202280250055
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRIVER [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m18.229166666666973
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRIVER [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m23.437500000000888
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSLP [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m8.53788687299914
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSLP [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m8.53788687299914
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mORBS [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m22313.419117647056
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mORBS [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m22313.419117647056
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mEUL [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m7.1394574012377765
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBLESS [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m5.531313379631609
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGRASS [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m43.078690407811635
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGRASS [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m34.462952326248676
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGRASS [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m40.206777713957855
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGRASS [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m43.078690407811635
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGRASS [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m5.722460658083935
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGRASS [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m5.722460658083935
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLA [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m6.9316081330861135
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLA [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m6.9316081330861135
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMYRO [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m3400.267737617135
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMYRO [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m3339.5522388059694
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mENSO [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m12.04819277108435
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mENSO [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m7.228915662651144
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mENSO [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m12.04819277108435
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mENSO [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m7.228915662651144
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mENSO [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m6.020469596627874
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRVV [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m33.84094754653139
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAIO [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m10.240072818296364
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAIO [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m7.9626891138665234
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAIO [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m7.969941933280271
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAIO [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m17.078446999885845
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTAC [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m33.45600535296094
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTAC [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m11.709601873536405
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTAC [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m21.793797150041893
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTAC [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m55.32271584241416
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTAC [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m33.52891869237226
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mALLO [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m5.733944954127809
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mALLO [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m5.733944954127809
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mALLO [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m5.160550458715982
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mVTHO [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m9.940357852884024
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mVTHO [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m9.940357852884024
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCUDIS [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m9.380863039398157
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCUDIS [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m18.761726078798485
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDRIFT [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m17.174753112924495
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDRIFT [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m12.875536480686467
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLSK [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m11.148272017837554
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLSK [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m11.148272017837554
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLSK [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m16.73173452314682
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMUBARAK [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m5.7903879559928155
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMUBARAK [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m5.7903879559928155
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMUBARAK [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m5.7903879559928155
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMUBARAK [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m5.7903879559928155
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m0G [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m13.30008312551807
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m0G [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m18.28761429758919
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m0G [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m12.468827930173191
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m0G [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m13.30008312551807
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m0G [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m18.28761429758919
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m0G [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m12.468827930173191
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mROAM [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m14.367816091954436
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mROAM [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m22.988505747127494
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGMX [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m7.715198941915213
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGMX [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m7.715198941915213
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mEDU [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m32.679738562091536
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNTRN [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m23.112480739599334
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNTRN [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m30.840400925212556
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNTRN [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m33.41902313624811
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFXS [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m8.092485549133341
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFXS [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m13.872832369941953
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAVL [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m62.344139650872876
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAVL [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m62.344139650872876
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSTX [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m6.201550387596217
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCELO [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m5.847953216373624
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCELO [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m5.847953216373624
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCELO [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m5.847953216373624
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCELO [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m5.847953216373624
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCELO [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m5.847953216373624
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCELO [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m5.847953216373624
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIDOL [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m6.2480474851628
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIDOL [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m6.2480474851628
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZENT [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m9.022013713460478
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZENT [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m10.826416456152884
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHMSTR [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m11.659541391370116
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHMSTR [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m11.659541391370116
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHMSTR [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m7.773027594248148
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHMSTR [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m11.659541391370116
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHMSTR [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m11.659541391370116
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHMSTR [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m7.773027594248148
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLQTY [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m6.712911165808166
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLQTY [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m11.188185276348186
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDGB [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m14.351320321468991
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDGB [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m17583.237657864523
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDGB [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m17504.29307384087
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRVN [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m9.825595676737075
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRVN [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m6.140997297960939
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mONG [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m7.026701465569225
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mONG [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m44.3637830207699
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mONG [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m42.34724742891609
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mONG [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m51.42165759225615
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDYDX [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m7.782101167314318
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSQD [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m10.375237765865046
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWOO [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m7.0571630204654845
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWOO [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m10.585744530698229
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWOO [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m7.0571630204654845
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIDEX [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m29451.476793248945
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIDEX [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m29451.476793248945
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m4 [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m8.823529411763326
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m4 [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m14.705882352939556
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m4 [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m11.76470588235246
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mEPIC [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m9.677419354839435
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFF [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m7.633587786258701
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFF [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m7.633587786258701
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mB2 [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m6.995452955580045
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mB2 [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m8.745845723282422
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUSELESS [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m5.564387917330246
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUSELESS [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m5.564387917330246
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUSELESS [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m5.564387917330246
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPI [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m7.840062720503077
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCOW [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m5.455537370431901
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSOON [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m9.337068160598617
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSOON [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m7.4696545284793086
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSOON [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m16.81928611474513
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSOON [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m14.950476546440344
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSOON [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m7.475238273219135
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSKY [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m8.822232024701892
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSKY [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m6.616674018527183
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDASH [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m29.877502240813094
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDASH [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m8.963250672244142
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDASH [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m8.963250672244142
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDASH [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m20.89552238805979
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDASH [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m23.88772767990394
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDASH [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m17.905102954342667
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mVFY [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m8.748906386702316
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mVFY [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m5.830903790089249
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mVFY [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m8.748906386702316
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDOT [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m6.3478628861618995
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDEEP [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m8.074283407347268
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTRB [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m13.582501990539045
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTRB [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m11.238059561714438
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTRB [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m9.363295880149614
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTRB [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m12.175704785988481
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTOWNS [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m13.268998793726006
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCAMP [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m13.74570446735379
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCAMP [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m11.454753722794495
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mA2Z [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m18.65671641791023
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mA2Z [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m18.65671641791023
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mA2Z [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m18.65671641791023
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZKC [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m6.662225183210459
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZKC [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m6.662225183210459
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mARC [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m19.66844619275095
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mARC [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m19.66844619275095
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOM [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m34.34852301350981
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOM [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m59.53743989008389
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOM [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m21.672179765027458
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOM [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m51.611423328362434
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOM [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m76.84367473333982
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOM [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m13.78518093049915
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOM [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m67.77713957495615
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOM [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m93.04997128087207
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOM [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m16.08271108558314
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMOCA [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m12.190166598943023
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMOCA [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m12.200081333875062
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMOCA [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m20.333468889791767
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOBT [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m7.680491551458648
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOBT [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m23.04147465437761
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZBT [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m8.319467554076777
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZBT [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m8.319467554076777
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZBT [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m8.319467554076777
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZBT [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m8.319467554076777
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mME [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m5.363368195226012
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mME [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m5.363368195226012
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFWOG [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m10.172939979653705
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACX [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m9.72447325769927
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACX [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m11.347057869995236
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSIREN [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m10.047366154729527
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSIREN [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m11.482704176835169
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCLO [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m20.308692120227477
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCLO [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m20.308692120227477
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCLO [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m20.308692120227477
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFLM [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m199.00497512437863
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXPIN [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m5.83299681428674
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXPIN [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m31.94025822124403
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXTZ [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m7.843137254901096
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXTZ [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m7.843137254901096
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXTZ [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m7.843137254901096
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBIGTIME [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m8.31255195344937
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBIGTIME [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m8.31255195344937
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCETUS [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m9.256402344953813
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCETUS [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m6.172839506172588
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCETUS [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m12.345679012345176
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCETUS [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m6.172839506172588
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSOLV [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m22.27171492204809
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSOLV [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m28.953229398663677
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSOLV [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m22.27171492204809
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSOLV [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m22.27171492204809
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSOLV [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m6.666666666667552
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAVAAI [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m13.351134846461404
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBAS [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m11.58524811739872
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mERA [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m14.864362690450072
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mERA [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m18.587360594795555
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mERA [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m7.434944237917396
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTA [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m16.24959376015646
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFLOW [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m8.481764206954113
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFLOW [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m8.485362749257774
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFLOW [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m12.728044123886074
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKGEN [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m7.626310772164977
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKGEN [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m5.725737188663469
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKGEN [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m8.588605782995204
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKGEN [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m18.13150109743388
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKGEN [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m15.268632503102145
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBEL [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m6.273525721456509
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBEL [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m12.547051442911277
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBEL [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m6.269592476488338
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRARE [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m7.601672367920632
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRARE [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m15.203344735841265
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAGLD [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m6.626905235254406
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m1000X [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m420.06525285481223
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m1000LUNC [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m7.13775874375417
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTNSR [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m81.02726086657877
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTNSR [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m82.41192225808713
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTNSR [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m79.64297974596597
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSUSHI [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m7.507507507506681
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSUSHI [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m7.507507507506681
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSUSHI [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m5.003752814610407
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSUSHI [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m5.007511266901189
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSUSHI [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m12.518778167250888
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMON [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m5.958461014640842
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMON [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m10.214504596526949
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMON [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m6.384337092998988
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMON [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m10.64056182166449
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSTORJ [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m19.518542615484368
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSTORJ [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m6.50618087182752
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTAKE [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m9.830908375934673
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTAKE [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m9.175514484205088
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mQ [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m6.285848982477667
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mF [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m16.28310898827738
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mF [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m18.458197611293585
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mF [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m5.4288816503798
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mF [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m14.108964619058886
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWLFI [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m6.116207951069662
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWLFI [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m6.116207951069662
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWLFI [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m12.239902080783706
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWLFI [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m6.119951040392702
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWLFI [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m6.119951040392702
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWLFI [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m12.239902080783706
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMERL [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m213.5699831777079
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMERL [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m186.99563595582347
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMERL [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m290.59199213952365
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMERL [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m75.41144681896246
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMERL [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m52.321296978628475
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMERL [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m263.81724392041195
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMERL [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m230.2808302808315
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMERL [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m16.36141636141646
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMERL [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m203.66300366300405
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMERL [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m23.447780835028986
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBEAT [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m6.885744135245808
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBEAT [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m9.378858391111079
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBEAT [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m12.59146631188765
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBEAT [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m6.652095410054226
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBEAT [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m5.583008647723681
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBEAT [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m15.086002090658479
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEC [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m8.337912868809399
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEC [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m7.200924750336273
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEC [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m8.906406928045964
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEC [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m7.958615200954259
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEC [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m6.821670172247431
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEC [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m8.527087715307673
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mM [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m9.747397237546682
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mM [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m11.488875025993165
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mM [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m36.39010189228591
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mM [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m11.488875025993165
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mM [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m36.39010189228591
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mHANA [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m5.06585612968571
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFLUX [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m10.887772194304121
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFLUX [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m10.887772194304121
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFLUX [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m10.887772194304121
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBICO [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m13.73836055564139
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBICO [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m10.68539154327593
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBICO [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m10.68213032199002
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBICO [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m7.630093087134822
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mROSE [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m6.4683053040100855
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mROSE [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m12.944983818769702
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mROSE [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m12.944983818769702
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSYN [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m14.062499999998884
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSYN [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m17.192872772741325
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDENT [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m8.340283569641569
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBLUAI [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m13.15789473684157
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBLUAI [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m10.52631578947394
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBLUAI [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m13.15789473684157
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGPS [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m22.211645248294662
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGPS [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m14.278914802475532
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGPS [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m6.336131791540731
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGPS [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m20.6218274111675
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGPS [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m12.690355329949549
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGPS [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m22.211645248294662
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGPS [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m14.278914802475532
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPERP [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m5454.545454545454
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACT [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m22.831050228311156
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACT [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m18.256503879507914
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACT [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m22.831050228311156
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mACT [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m22.831050228311156
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTHETA [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m13.509862199405578
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTHETA [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m10.807889759524762
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTHETA [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m8.105917319643947
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTHETA [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m8.101539292464677
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTHETA [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m5.40102619497645
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTSTBSC [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m33.1785003317848
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMAVIA [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m5.001667222407844
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMIRA [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m22.01430930104631
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMIRA [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m22.01430930104631
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMIRA [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m27.53303964757712
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMIRA [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m5.506607929514812
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBAN [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m14.856388246946153
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBAN [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m11.554968636513802
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m1000SATS [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m27.397260273973274
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAEVO [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m6.16649537512893
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRDNT [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m33.61344537814988
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRDNT [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m25.21008403361241
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRDNT [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m25.21008403361241
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEN [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m6.347191367820451
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEN [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m5.553792446843423
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEN [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m6.347191367820451
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEN [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m9.523809523809886
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEN [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m8.730158730159532
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZEN [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m9.523809523809886
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTURTLE [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m9.815950920244997
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTURTLE [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m12.272950417280665
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTURTLE [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m22.113022113022062
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTURTLE [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m7.371007371007924
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSXP [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m27.26281352235553
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSXP [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m32.71537622682603
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNEO [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m6.891798759476485
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNEO [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m6.891798759476485
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTRU [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m7.722007722007408
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTRU [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m7.722007722007408
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mH [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m5.248023005031613
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mH [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m7.90797987059662
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mH [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m8.12598878182094
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mH [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m10.7867107723293
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mH [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m5.750017968805918
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWIF [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m5.150656708731225
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPOLYX [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m8.908685968820267
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPOLYX [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m5.937360843104997
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFLUID [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m11.730205278592386
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFLUID [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m8.797653958943313
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mONT [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m9.497964721845403
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mONT [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m6.784260515603052
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mONT [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m9.497964721845403
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mONT [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m6.784260515603052
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTAG [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m29.24982794218835
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTRUST [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m20.313406848519396
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTRUST [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m5.807200929153121
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTRUST [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m5.807200929153121
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTRUST [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m26.132404181185017
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTRUST [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m14.501160092807435
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTRUST [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m14.501160092807435
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m1000XEC [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m8.163265306122117
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m1000XEC [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m16.326530612244234
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m1000XEC [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m8.156606851549423
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFHE [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m23.174971031285267
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFHE [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m5.783689994216075
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mW [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m6.372132540357317
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mW [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m6.372132540357317
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMANA [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m5.903187721370528
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMANA [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m5.903187721370528
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNS [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m13.602357742008058
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mVANRY [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m18.331805682860605
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mVANRY [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m27.497708524290115
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mVANRY [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m9.149130832570531
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSFP [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m8.532423208190187
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRENDER [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m5.44069640913977
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRENDER [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m10.88139281828075
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRENDER [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m5.44069640913977
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRENDER [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m5.44069640913977
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mVVV [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m11.011194714625322
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mVVV [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m9.174311926604494
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mALPINE [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m6.633499170813714
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCGPT [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m5.140066820868462
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCGPT [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m5.140066820868462
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXVG [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m25.17223105458389
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXVG [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m7.9491255961843255
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXVG [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m5.288906518576838
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXVG [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m23.844217777188746
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mXVG [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m6.623393826996684
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAVA [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m9.532888465205671
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAVA [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m12.710517953606976
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAVA [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m6.353240152477063
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAVA [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m9.529860228715595
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mARK [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m10.948905109487844
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mARK [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m14.603870025557192
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCOOKIE [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m5.510653930932276
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCOOKIE [36mlong=[0mbybit [36mshort=[0mokx [36mspread_bps=[0m11.021307861865825
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCOOKIE [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m7.347538574577217
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBEAM [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m8.673026886383244
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mORCA [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m9.132420091325223
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLUNA [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m6.684491978608889
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMEGA [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m822.3495702005733
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTIA [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m18.960341286142814
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTIA [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m14.213518635502401
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTIA [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m15.795293002685213
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mTIA [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m20.54361567635853
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAKE [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m13.329778725673478
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSCR [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m6.822612085770041
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSXT [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m8.081896551724743
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSXT [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m13.46982758620728
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSXT [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m5.3879310344825395
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMASK [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m5.427408412483949
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFIL [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m5.952380952381619
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFIL [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m5.952380952381619
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mFIL [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m5.952380952381619
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBTR [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m18.626929217669137
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBTR [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m7.974481658692782
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mC98 [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m6.802721088436277
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mC98 [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m6.802721088436277
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZRX [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m18.903591682419325
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZRX [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m12.6023944549468
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZRX [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m6.301197227472525
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZRX [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m12.6023944549468
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mZRX [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m6.293266205159785
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPROVE [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m6.148800983808618
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPROVE [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m12.2976019676161
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mPROVE [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m8.198401311744444
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSYS [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m34.10059676044192
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSYS [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m34.10059676044192
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSYS [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m29.82530890498387
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSTRAX [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m555828.3433133733
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAT [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m15.479876160990441
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAT [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m5.159958720329668
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAT [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m15.479876160990441
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRIF [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m18.0551973175137
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRIF [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m20.639834881320105
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCTSI [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m24.774774774774546
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCTSI [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m24.774774774774546
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCTSI [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m13.498312710910588
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mCTSI [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m13.498312710910588
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mENA [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m7.034822370734364
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMELANIA [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m17.280240420736888
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMELANIA [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m9.759759759759099
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMELANIA [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m9.759759759759099
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSYRUP [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m10.224274406331693
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSYRUP [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m6.596306068600856
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSYRUP [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m9.894459102901285
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0m1000CAT [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m8.46979107848663
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWAVES [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m7330.651440436023
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWAVES [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m7330.651440436023
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWAVES [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m7328.402750746072
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mWAXP [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m11.482254697286631
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBARD [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m5.407597674732403
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBARD [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m7.031017604585912
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBARD [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m5.678898834473296
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mBARD [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m5.678898834473296
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUSDC [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m7.183016867083028
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUSDC [36mlong=[0mbinance [36mshort=[0mokx [36mspread_bps=[0m7.433307821980163
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUSDC [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m5.0025012506247615
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUSDC [36mlong=[0mbitget [36mshort=[0mokx [36mspread_bps=[0m7.983991995996542
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMYX [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m5.238344683079569
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMYX [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m21.361915826556384
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMYX [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m21.737500936960515
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMMT [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m10.026737967913334
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMMT [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m16.72240802675587
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMMT [36mlong=[0mmexc [36mshort=[0mokx [36mspread_bps=[0m6.6912010705914335
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMMT [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m20.07360321177616
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mMMT [36mlong=[0mbybit [36mshort=[0mbitget [36mspread_bps=[0m16.72240802675587
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mNEIROCTO [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m14.958863126402758
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUAI [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m33.742331288345376
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUAI [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m41.44282425172776
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUAI [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m9.976976208748368
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mUAI [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m17.6096776663355
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSTG [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m8.510638297872584
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSTG [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m8.510638297872584
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRAD [36mlong=[0mmexc [36mshort=[0mbinance [36mspread_bps=[0m39746.46226415094
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mRAD [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m39746.46226415094
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDEGEN [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m7.604562737641947
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDEGEN [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m7.604562737641947
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mDEGEN [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m7.604562737641947
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAXL [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m7.57575757575674
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAXL [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m7.57575757575674
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAXL [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m7.57575757575674
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mEGLD [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m6.264094211976815
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mEGLD [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m5.011275369581006
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mEGLD [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m6.264094211976815
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mEGLD [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m5.011275369581006
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mJCT [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m33.86386725364046
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mJCT [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m27.09109380291295
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mJCT [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m40.63664070436943
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mJCT [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m27.09109380291295
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mLAB [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m6.351222610352969
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mD [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m5.757052389176507
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mICNT [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m20.236087689712964
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mICNT [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m20.236087689712964
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mB3 [36mlong=[0mbitget [36mshort=[0mbybit [36mspread_bps=[0m8.481764206956173
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mB3 [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m8.481764206956173
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mIRYS [36mlong=[0mbinance [36mshort=[0mmexc [36mspread_bps=[0m12.394133443502902
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAAVE [36mlong=[0mmexc [36mshort=[0mbybit [36mspread_bps=[0m5.898123324397514
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAAVE [36mlong=[0mmexc [36mshort=[0mbitget [36mspread_bps=[0m5.898123324397514
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAAVE [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m6.434661375945335
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAAVE [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m6.434661375945335
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGIGA [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m53.701572688914936
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mGIGA [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m42.14559386973241
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOBOL [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m11.415525114155352
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mOBOL [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m8.153946510111128
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSONIC [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m5.497526113248432
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSONIC [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m11.001100110011317
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mSONIC [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m11.001100110011317
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mAPT [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m6.5559440559443045
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mALICE [36mlong=[0mbinance [36mshort=[0mbybit [36mspread_bps=[0m31.496062992126884
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mALICE [36mlong=[0mbinance [36mshort=[0mbitget [36mspread_bps=[0m27.559055118109388
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKITE [36mlong=[0mbybit [36mshort=[0mmexc [36mspread_bps=[0m9.316191540897055
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKITE [36mlong=[0mbybit [36mshort=[0mbinance [36mspread_bps=[0m11.179429849077243
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKITE [36mlong=[0mokx [36mshort=[0mmexc [36mspread_bps=[0m26.129152668905242
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKITE [36mlong=[0mokx [36mshort=[0mbybit [36mspread_bps=[0m13.064576334453267
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKITE [36mlong=[0mokx [36mshort=[0mbinance [36mspread_bps=[0m27.995520716684837
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKITE [36mlong=[0mokx [36mshort=[0mbitget [36mspread_bps=[0m11.198208286673674
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKITE [36mlong=[0mbitget [36mshort=[0mmexc [36mspread_bps=[0m5.587632706275899
+[90m12:21AM[0m [33mDBG[0m Preliminary spread found [36mcanonical=[0mKITE [36mlong=[0mbitget [36mshort=[0mbinance [36mspread_bps=[0m7.450176941702062
+[90m12:21AM[0m [32mINF[0m Symbols requiring WebSocket subscription [36mexchange=[0mbybit [36msymbols=[0m268
+[90m12:21AM[0m [32mINF[0m Symbols requiring WebSocket subscription [36mexchange=[0mmexc [36msymbols=[0m223
+[90m12:21AM[0m [32mINF[0m Symbols requiring WebSocket subscription [36mexchange=[0mokx [36msymbols=[0m115
+[90m12:21AM[0m [32mINF[0m Symbols requiring WebSocket subscription [36mexchange=[0mbinance [36msymbols=[0m305
+[90m12:21AM[0m [32mINF[0m Symbols requiring WebSocket subscription [36mexchange=[0mbitget [36msymbols=[0m223
+[90m12:21AM[0m [32mINF[0m Phase 2: Connecting WebSockets for discovered spreads [36mexchanges=[0m5
+[90m12:21AM[0m [32mINF[0m Connecting to exchange for selected symbols [36mexchange=[0mbitget [36msymbols=[0m223
+[90m12:21AM[0m [32mINF[0m Connecting to exchange for selected symbols [36mexchange=[0mbybit [36msymbols=[0m268
+[90m12:21AM[0m [32mINF[0m Connecting to exchange for selected symbols [36mexchange=[0mokx [36msymbols=[0m115
+[90m12:21AM[0m [32mINF[0m Connecting to exchange for selected symbols [36mexchange=[0mmexc [36msymbols=[0m223
+[90m12:21AM[0m [32mINF[0m Connecting to exchange for selected symbols [36mexchange=[0mbinance [36msymbols=[0m305
+[90m12:21AM[0m [32mINF[0m Connecting to MEXC WebSocket [36murl=[0mwss://contract.mexc.com/ws
+[90m12:21AM[0m [32mINF[0m Connecting to Bitget WebSocket [36murl=[0mwss://ws.bitget.com/v2/ws/public
+[90m12:21AM[0m [32mINF[0m Connecting to Binance WebSocket for selected symbols [36msymbols=[0m305 [36murl=[0mwss://fstream.binance.com/stream?streams=lskusdt@depth@100ms/dydxusdt@depth@100ms/dymusdt@depth@100ms/wusdt@depth@100ms/rvnusdt@depth@100ms/lynusdt@depth@100ms/iotausdt@depth@100ms/zecusdc@depth@100ms/uselessusdt@depth@100ms/melaniausdt@depth@100ms/wlfiusdt@depth@100ms/crossusdt@depth@100ms/trustusdt@depth@100ms/turtleusdt@depth@100ms/idolusdt@depth@100ms/aaveusdc@depth@100ms/fusdt@depth@100ms/busdt@depth@100ms/townsusdt@depth@100ms/kgenusdt@depth@100ms/galausdt@depth@100ms/sfpusdt@depth@100ms/sysusdt@depth@100ms/lqtyusdt@depth@100ms/erausdt@depth@100ms/achusdt@depth@100ms/xanusdt@depth@100ms/aweusdt@depth@100ms/wifusdt@depth@100ms/jtousdt@depth@100ms/ontusdt@depth@100ms/c98usdt@depth@100ms/clousdt@depth@100ms/ntrnusdt@depth@100ms/cyberusdt@depth@100ms/proveusdt@depth@100ms/hemiusdt@depth@100ms/solvusdt@depth@100ms/obolusdt@depth@100ms/fheusdt@depth@100ms/spellusdt@depth@100ms/neousdc@depth@100ms/btrusdt@depth@100ms/catiusdt@depth@100ms/flowusdt@depth@100ms/belusdt@depth@100ms/zkcusdt@depth@100ms/blurusdt@depth@100ms/chzusdt@depth@100ms/promptusdt@depth@100ms/bigtimeusdt@depth@100ms/fluidusdt@depth@100ms/thetausdt@depth@100ms/ubusdt@depth@100ms/pendleusdt@depth@100ms/iostusdt@depth@100ms/dgbusdt@depth@100ms/signusdt@depth@100ms/filusdc@depth@100ms/plumeusdt@depth@100ms/1000xecusdt@depth@100ms/radusdt@depth@100ms/resolvusdt@depth@100ms/athusdt@depth@100ms/clankerusdt@depth@100ms/tagusdt@depth@100ms/1000luncusdt@depth@100ms/nilusdt@depth@100ms/bsvusdt@depth@100ms/nfpusdt@depth@100ms/cvxusdt@depth@100ms/truusdt@depth@100ms/xplusdt@depth@100ms/virtualusdt@depth@100ms/truthusdt@depth@100ms/pundixusdt@depth@100ms/pippinusdt@depth@100ms/holousdt@depth@100ms/recallusdt@depth@100ms/avaaiusdt@depth@100ms/agldusdt@depth@100ms/giggleusdt@depth@100ms/tacusdt@depth@100ms/edenusdt@depth@100ms/vthousdt@depth@100ms/bluaiusdt@depth@100ms/rezusdt@depth@100ms/kiteusdt@depth@100ms/sapienusdt@depth@100ms/cvcusdt@depth@100ms/soonusdt@depth@100ms/altusdt@depth@100ms/zbtusdt@depth@100ms/quickusdt@depth@100ms/stgusdt@depth@100ms/openusdt@depth@100ms/acxusdt@depth@100ms/portalusdt@depth@100ms/doodusdt@depth@100ms/sqdusdt@depth@100ms/powrusdt@depth@100ms/axlusdt@depth@100ms/takeusdt@depth@100ms/stousdt@depth@100ms/ctsiusdt@depth@100ms/mewusdt@depth@100ms/xnyusdt@depth@100ms/iotxusdt@depth@100ms/rareusdt@depth@100ms/ctkusdt@depth@100ms/banusdt@depth@100ms/bananas31usdt@depth@100ms/dusdt@depth@100ms/aiousdt@depth@100ms/ffusdt@depth@100ms/vfyusdt@depth@100ms/mlnusdt@depth@100ms/roseusdt@depth@100ms/usualusdt@depth@100ms/nearusdc@depth@100ms/roninusdt@depth@100ms/layerusdt@depth@100ms/xcnusdt@depth@100ms/orbsusdt@depth@100ms/renderusdt@depth@100ms/labusdt@depth@100ms/yalausdt@depth@100ms/aptusdt@depth@100ms/saharausdt@depth@100ms/dashusdt@depth@100ms/algousdt@depth@100ms/xmrusdt@depth@100ms/lightusdt@depth@100ms/compusdt@depth@100ms/42usdt@depth@100ms/ongusdt@depth@100ms/storjusdt@depth@100ms/flmusdt@depth@100ms/polyxusdt@depth@100ms/sxtusdt@depth@100ms/merlusdt@depth@100ms/cotiusdt@depth@100ms/ankrusdt@depth@100ms/rifusdt@depth@100ms/glmrusdt@depth@100ms/jctusdt@depth@100ms/snxusdt@depth@100ms/trbusdt@depth@100ms/bbusdt@depth@100ms/slpusdt@depth@100ms/b3usdt@depth@100ms/hyperusdt@depth@100ms/orcausdt@depth@100ms/scrusdt@depth@100ms/vvvusdt@depth@100ms/enausdc@depth@100ms/aceusdt@depth@100ms/xpinusdt@depth@100ms/cfxusdt@depth@100ms/swellusdt@depth@100ms/atusdt@depth@100ms/1000xusdt@depth@100ms/aevousdt@depth@100ms/bandusdt@depth@100ms/mocausdt@depth@100ms/deepusdt@depth@100ms/esportsusdt@depth@100ms/eduusdt@depth@100ms/myrousdt@depth@100ms/cowusdt@depth@100ms/dolousdt@depth@100ms/woousdt@depth@100ms/duskusdt@depth@100ms/usdcusdt@depth@100ms/mmtusdt@depth@100ms/fxsusdt@depth@100ms/1000ratsusdt@depth@100ms/ethwusdt@depth@100ms/beatusdt@depth@100ms/griffainusdt@depth@100ms/tusdt@depth@100ms/sxpusdt@depth@100ms/mirausdt@depth@100ms/blessusdt@depth@100ms/grassusdt@depth@100ms/ensousdt@depth@100ms/skyusdt@depth@100ms/walusdt@depth@100ms/wavesusdt@depth@100ms/syrupusdt@depth@100ms/rvvusdt@depth@100ms/hmstrusdt@depth@100ms/hftusdt@depth@100ms/zerebrousdt@depth@100ms/api3usdt@depth@100ms/waxpusdt@depth@100ms/coaiusdt@depth@100ms/straxusdt@depth@100ms/seiusdt@depth@100ms/promusdt@depth@100ms/sushiusdt@depth@100ms/alpineusdt@depth@100ms/synusdt@depth@100ms/ssvusdt@depth@100ms/qusdt@depth@100ms/peopleusdt@depth@100ms/allousdt@depth@100ms/hanausdt@depth@100ms/bicousdt@depth@100ms/uaiusdt@depth@100ms/lausdt@depth@100ms/1000catusdt@depth@100ms/icxusdt@depth@100ms/bardusdt@depth@100ms/stxusdt@depth@100ms/zrcusdt@depth@100ms/tnsrusdt@depth@100ms/etcusdt@depth@100ms/musdt@depth@100ms/eulusdt@depth@100ms/avausdt@depth@100ms/alchusdt@depth@100ms/nomusdt@depth@100ms/cetususdt@depth@100ms/vetusdt@depth@100ms/zrxusdt@depth@100ms/irysusdt@depth@100ms/epicusdt@depth@100ms/inusdt@depth@100ms/popcatusdt@depth@100ms/dentusdt@depth@100ms/actusdt@depth@100ms/myxusdt@depth@100ms/degenusdt@depth@100ms/manausdt@depth@100ms/vanryusdt@depth@100ms/zenusdt@depth@100ms/b2usdt@depth@100ms/mubarakusdt@depth@100ms/commonusdt@depth@100ms/pieverseusdt@depth@100ms/meusdt@depth@100ms/1000satsusdt@depth@100ms/icntusdt@depth@100ms/maviausdt@depth@100ms/celousdt@depth@100ms/gpsusdt@depth@100ms/homeusdt@depth@100ms/hookusdt@depth@100ms/kaitousdc@depth@100ms/pnutusdc@depth@100ms/ipusdc@depth@100ms/pythusdt@depth@100ms/maskusdt@depth@100ms/enjusdt@depth@100ms/sirenusdt@depth@100ms/driftusdt@depth@100ms/bnbusdt@depth@100ms/damusdt@depth@100ms/xvgusdt@depth@100ms/perpusdt@depth@100ms/tiausdt@depth@100ms/axsusdt@depth@100ms/egldusdt@depth@100ms/penguusdc@depth@100ms/gusdt@depth@100ms/metisusdt@depth@100ms/sagausdt@depth@100ms/idexusdt@depth@100ms/4usdt@depth@100ms/rdntusdt@depth@100ms/sonicusdt@depth@100ms/moodengusdt@depth@100ms/cgptusdt@depth@100ms/monusdt@depth@100ms/sntusdt@depth@100ms/fluxusdt@depth@100ms/xtzusdt@depth@100ms/gmxusdt@depth@100ms/a2zusdt@depth@100ms/dotusdt@depth@100ms/arcusdt@depth@100ms/skyaiusdt@depth@100ms/strkusdt@depth@100ms/eptusdt@depth@100ms/aliceusdt@depth@100ms/xvsusdt@depth@100ms/aiausdt@depth@100ms/glmusdt@depth@100ms/riverusdt@depth@100ms/tausdt@depth@100ms/akeusdt@depth@100ms/husdt@depth@100ms/basusdt@depth@100ms/olusdt@depth@100ms/0gusdt@depth@100ms/spkusdt@depth@100ms/carvusdt@depth@100ms/arkusdt@depth@100ms/mitousdt@depth@100ms/cookieusdt@depth@100ms/brettusdt@depth@100ms/cudisusdt@depth@100ms/injusdt@depth@100ms/omusdt@depth@100ms
+[90m12:21AM[0m [1m[31mERR[0m[0m Failed to connect to exchange [36merror=[0m[31m"failed to connect market data: failed to connect market data: failed to connect: websocket: bad handshake"[0m [36mexchange=[0mmexc
+[90m12:21AM[0m [32mINF[0m Connected to Binance WebSocket (selective) [36msymbols=[0m305
+[90m12:21AM[0m [32mINF[0m Connected to Bybit WebSocket (selective) [36msymbols=[0m268
+[90m12:21AM[0m [32mINF[0m Connected to Bitget WebSocket
+[90m12:22AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"websocket read error: websocket: close 1006 (abnormal closure): unexpected EOF"[0m
+[90m12:24AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"read error: websocket: close 1006 (abnormal closure): unexpected EOF"[0m
+[90m12:24AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:25AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:25AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:25AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:26AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:26AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:26AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:27AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:27AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:27AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:28AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:28AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:28AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:29AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:29AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:29AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:30AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:30AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:30AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:31AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:31AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:31AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:32AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:32AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:32AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:33AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:33AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:33AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:34AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:34AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:34AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:35AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:35AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:35AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:36AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:36AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:36AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:37AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:37AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:37AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:38AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:38AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:38AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:39AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:39AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:39AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:40AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:40AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:40AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:41AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:41AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:41AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:42AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:42AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:42AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:43AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:43AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:43AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:44AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:44AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:44AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:45AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:45AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:45AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:46AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:46AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:46AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:47AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:47AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:47AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:48AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:48AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:48AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:49AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:49AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:49AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:50AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:50AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:50AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:51AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:51AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:51AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:52AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:52AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:52AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:53AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:53AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:53AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:54AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:54AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:54AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:55AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:55AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:55AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:56AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:56AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:56AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:57AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:57AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:57AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:58AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:58AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:58AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:59AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:59AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m12:59AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:00AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:00AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:00AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:01AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:01AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:01AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:02AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:02AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:02AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:03AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:03AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:03AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:04AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:04AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:04AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:05AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m
+[90m1:05AM[0m [1m[31mERR[0m[0m WebSocket error [36merror=[0m[31m"ping error: write tcp 192.168.0.145:55227->18.165.72.71:443: write: broken pipe"[0m

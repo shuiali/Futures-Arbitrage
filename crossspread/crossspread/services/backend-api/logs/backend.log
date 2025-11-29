@@ -1,0 +1,119 @@
+
+> @crossspread/backend-api@1.0.0 start
+> nest start
+
+(node:47369) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:07 AM [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:07 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +13ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrismaModule dependencies initialized[39m[38;5;3m +446ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRedisModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPassportModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m[38;5;3m +6ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigHostModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m[38;5;3m +2ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuthModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mSpreadsModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAssetsModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTradesModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMarketModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mUsersModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mMarketGateway subscribed to the "subscribe" message[39m[38;5;3m +48ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mMarketGateway subscribed to the "unsubscribe" message[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAuthController {/api/v1/auth}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/auth/login, POST} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mUsersController {/api/v1}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/admin/users, POST} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/admin/users, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/admin/users/:userId, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/admin/users/:userId, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/admin/users/:userId, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/users/:userId/positions, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/api_keys, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/api_keys, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/api_keys/:keyId, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mInternalController {/api/v1/internal}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/internal/credentials/:exchange, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/internal/credentials, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mSpreadsController {/api/v1/spreads}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/spreads, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/spreads/:spreadId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/spreads/:spreadId/history, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/spreads/:spreadId/candles, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/spreads/:spreadId/slippage, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mTradesController {/api/v1/trade}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/trade/enter, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/trade/exit/:positionId, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/trade/positions, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/trade/positions/:positionId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/trade/orders, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/trade/orders/:orderId/cancel, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mMarketController {/api/v1}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/tokens, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/exchanges, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAssetsController {/api/v1/api/v1/assets}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/api/v1/assets, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/api/v1/assets/exchange/:exchange, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/api/v1/assets/asset/:asset, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/api/v1/assets/:exchange/:asset, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 47387  - [39m11/27/2025, 12:22:08 AM [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +67ms[39m
+CrossSpread API running on port 8000
+[31m[Nest] 47387  - [39m11/27/2025, 12:56:21 AM [31m  ERROR[39m [38;5;3m[ExceptionsHandler] [39m[31mInvalid key length[39m
+RangeError: Invalid key length
+    at Decipheriv.createCipherBase (node:internal/crypto/cipher:117:19)
+    at Decipheriv.createCipherWithIV (node:internal/crypto/cipher:128:3)
+    at new Decipheriv (node:internal/crypto/cipher:247:3)
+    at Object.createDecipheriv (node:crypto:153:10)
+    at UsersService.decrypt (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/src/users/users.service.ts:283:29)
+    at <anonymous> (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/src/users/users.service.ts:319:20)
+    at Array.map (<anonymous>)
+    at UsersService.getDecryptedApiCredentials (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/src/users/users.service.ts:318:17)
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-execution-context.js:46:28
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-proxy.js:9:17
+[31m[Nest] 47387  - [39m11/27/2025, 12:56:21 AM [31m  ERROR[39m [38;5;3m[ExceptionsHandler] [39m[31mInvalid key length[39m
+RangeError: Invalid key length
+    at Decipheriv.createCipherBase (node:internal/crypto/cipher:117:19)
+    at Decipheriv.createCipherWithIV (node:internal/crypto/cipher:128:3)
+    at new Decipheriv (node:internal/crypto/cipher:247:3)
+    at Object.createDecipheriv (node:crypto:153:10)
+    at UsersService.decrypt (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/src/users/users.service.ts:283:29)
+    at <anonymous> (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/src/users/users.service.ts:319:20)
+    at Array.map (<anonymous>)
+    at UsersService.getDecryptedApiCredentials (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/src/users/users.service.ts:318:17)
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-execution-context.js:46:28
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-proxy.js:9:17
+[31m[Nest] 47387  - [39m11/27/2025, 12:56:21 AM [31m  ERROR[39m [38;5;3m[ExceptionsHandler] [39m[31mInvalid key length[39m
+RangeError: Invalid key length
+    at Decipheriv.createCipherBase (node:internal/crypto/cipher:117:19)
+    at Decipheriv.createCipherWithIV (node:internal/crypto/cipher:128:3)
+    at new Decipheriv (node:internal/crypto/cipher:247:3)
+    at Object.createDecipheriv (node:crypto:153:10)
+    at UsersService.decrypt (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/src/users/users.service.ts:283:29)
+    at <anonymous> (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/src/users/users.service.ts:319:20)
+    at Array.map (<anonymous>)
+    at UsersService.getDecryptedApiCredentials (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/src/users/users.service.ts:318:17)
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-execution-context.js:46:28
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-proxy.js:9:17
+[31m[Nest] 47387  - [39m11/27/2025, 12:56:21 AM [31m  ERROR[39m [38;5;3m[ExceptionsHandler] [39m[31mInvalid key length[39m
+RangeError: Invalid key length
+    at Decipheriv.createCipherBase (node:internal/crypto/cipher:117:19)
+    at Decipheriv.createCipherWithIV (node:internal/crypto/cipher:128:3)
+    at new Decipheriv (node:internal/crypto/cipher:247:3)
+    at Object.createDecipheriv (node:crypto:153:10)
+    at UsersService.decrypt (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/src/users/users.service.ts:283:29)
+    at <anonymous> (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/src/users/users.service.ts:319:20)
+    at Array.map (<anonymous>)
+    at UsersService.getDecryptedApiCredentials (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/src/users/users.service.ts:318:17)
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-execution-context.js:46:28
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-proxy.js:9:17
+[31m[Nest] 47387  - [39m11/27/2025, 12:56:26 AM [31m  ERROR[39m [38;5;3m[ExceptionsHandler] [39m[31mInvalid key length[39m
+RangeError: Invalid key length
+    at Decipheriv.createCipherBase (node:internal/crypto/cipher:117:19)
+    at Decipheriv.createCipherWithIV (node:internal/crypto/cipher:128:3)
+    at new Decipheriv (node:internal/crypto/cipher:247:3)
+    at Object.createDecipheriv (node:crypto:153:10)
+    at UsersService.decrypt (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/src/users/users.service.ts:283:29)
+    at UsersService.getAllDecryptedApiCredentials (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/src/users/users.service.ts:355:22)
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-execution-context.js:46:28
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-proxy.js:9:17

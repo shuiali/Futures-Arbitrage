@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "maker": {
+      "command": "node",
+      "args": ["/Users/shuiali/Documents/FA2.0/crossspread/MAKER/mcp-maker-server/dist/index.js"]
+    }
+  }
+}

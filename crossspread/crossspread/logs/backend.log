@@ -1,0 +1,236 @@
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +7ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrismaModule dependencies initialized[39m[38;5;3m +242ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRedisModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPassportModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m[38;5;3m +3ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigHostModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuthModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mSpreadsModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAssetsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTradesModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMarketModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mUsersModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mMarketGateway subscribed to the "subscribe" message[39m[38;5;3m +13ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[WebSocketsController] [39m[32mMarketGateway subscribed to the "unsubscribe" message[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAuthController {/api/v1/auth}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/auth/login, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mUsersController {/api/v1}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/admin/users, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/admin/users, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/admin/users/:userId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/admin/users/:userId, PUT} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/admin/users/:userId, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/users/:userId/positions, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/api_keys, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/api_keys, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/api_keys/:keyId, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mInternalController {/api/v1/internal}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/internal/credentials/:exchange, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/internal/credentials, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mSpreadsController {/api/v1/spreads}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/spreads, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/spreads/:spreadId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/spreads/:spreadId/history, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/spreads/:spreadId/candles, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/spreads/:spreadId/slippage, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mTradesController {/api/v1/trade}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/trade/enter, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/trade/exit/:positionId, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/trade/positions, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/trade/positions/:positionId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/trade/orders, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/trade/orders/:orderId/cancel, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mMarketController {/api/v1}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/tokens, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/exchanges, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAssetsController {/api/v1/assets}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/assets, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/assets/exchange/:exchange, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/assets/asset/:asset, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/v1/assets/:exchange/:asset, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 14482  - [39m11/27/2025, 3:43:11 AM [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +38ms[39m
+CrossSpread API running on port 8000
+[31m[Nest] 14482  - [39m11/27/2025, 3:43:13 AM [31m  ERROR[39m [38;5;3m[ExceptionsHandler] [39m[31mInvalid key length[39m
+RangeError: Invalid key length
+    at Decipheriv.createCipherBase (node:internal/crypto/cipher:117:19)
+    at Decipheriv.createCipherWithIV (node:internal/crypto/cipher:128:3)
+    at new Decipheriv (node:internal/crypto/cipher:247:3)
+    at Object.createDecipheriv (node:crypto:153:10)
+    at UsersService.decrypt (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/users/users.service.js:262:33)
+    at /Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/users/users.service.js:284:26
+    at Array.map (<anonymous>)
+    at UsersService.getDecryptedApiCredentials (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/users/users.service.js:283:21)
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-execution-context.js:46:28
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-proxy.js:9:17
+[31m[Nest] 14482  - [39m11/27/2025, 3:43:13 AM [31m  ERROR[39m [38;5;3m[ExceptionsHandler] [39m[31mInvalid key length[39m
+RangeError: Invalid key length
+    at Decipheriv.createCipherBase (node:internal/crypto/cipher:117:19)
+    at Decipheriv.createCipherWithIV (node:internal/crypto/cipher:128:3)
+    at new Decipheriv (node:internal/crypto/cipher:247:3)
+    at Object.createDecipheriv (node:crypto:153:10)
+    at UsersService.decrypt (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/users/users.service.js:262:33)
+    at /Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/users/users.service.js:284:26
+    at Array.map (<anonymous>)
+    at UsersService.getDecryptedApiCredentials (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/users/users.service.js:283:21)
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-execution-context.js:46:28
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-proxy.js:9:17
+[31m[Nest] 14482  - [39m11/27/2025, 3:43:13 AM [31m  ERROR[39m [38;5;3m[ExceptionsHandler] [39m[31mInvalid key length[39m
+RangeError: Invalid key length
+    at Decipheriv.createCipherBase (node:internal/crypto/cipher:117:19)
+    at Decipheriv.createCipherWithIV (node:internal/crypto/cipher:128:3)
+    at new Decipheriv (node:internal/crypto/cipher:247:3)
+    at Object.createDecipheriv (node:crypto:153:10)
+    at UsersService.decrypt (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/users/users.service.js:262:33)
+    at /Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/users/users.service.js:284:26
+    at Array.map (<anonymous>)
+    at UsersService.getDecryptedApiCredentials (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/users/users.service.js:283:21)
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-execution-context.js:46:28
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-proxy.js:9:17
+[31m[Nest] 14482  - [39m11/27/2025, 3:43:13 AM [31m  ERROR[39m [38;5;3m[ExceptionsHandler] [39m[31mInvalid key length[39m
+RangeError: Invalid key length
+    at Decipheriv.createCipherBase (node:internal/crypto/cipher:117:19)
+    at Decipheriv.createCipherWithIV (node:internal/crypto/cipher:128:3)
+    at new Decipheriv (node:internal/crypto/cipher:247:3)
+    at Object.createDecipheriv (node:crypto:153:10)
+    at UsersService.decrypt (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/users/users.service.js:262:33)
+    at /Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/users/users.service.js:284:26
+    at Array.map (<anonymous>)
+    at UsersService.getDecryptedApiCredentials (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/users/users.service.js:283:21)
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-execution-context.js:46:28
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-proxy.js:9:17
+[31m[Nest] 14482  - [39m11/27/2025, 3:43:18 AM [31m  ERROR[39m [38;5;3m[ExceptionsHandler] [39m[31mInvalid key length[39m
+RangeError: Invalid key length
+    at Decipheriv.createCipherBase (node:internal/crypto/cipher:117:19)
+    at Decipheriv.createCipherWithIV (node:internal/crypto/cipher:128:3)
+    at new Decipheriv (node:internal/crypto/cipher:247:3)
+    at Object.createDecipheriv (node:crypto:153:10)
+    at UsersService.decrypt (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/users/users.service.js:262:33)
+    at UsersService.getAllDecryptedApiCredentials (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/users/users.service.js:309:30)
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-execution-context.js:46:28
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-proxy.js:9:17
+Client connected: nyNICiclgUx3iWQHAAAB, user: 20407169-343e-4d55-afa1-e4f9ad848f60
+[31m[Nest] 14482  - [39m11/27/2025, 3:43:45 AM [31m  ERROR[39m [38;5;3m[ExceptionsHandler] [39m[31m
+Invalid `this.prisma.spread.findUnique()` invocation in
+/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/trades/trades.service.js:24:49
+
+  21     this.spreadsService = spreadsService;
+  22 }
+  23 async enterTrade(userId, request) {
+→ 24     const spread = await this.prisma.spread.findUnique({
+           where: {
+             id: undefined,
+         ?   longExchangeId_shortExchangeId_symbol?: SpreadLongExchangeIdShortExchangeIdSymbolCompoundUniqueInput,
+         ?   AND?: SpreadWhereInput | SpreadWhereInput[],
+         ?   OR?: SpreadWhereInput[],
+         ?   NOT?: SpreadWhereInput | SpreadWhereInput[],
+         ?   symbol?: StringFilter | String,
+         ?   longExchangeId?: StringFilter | String,
+         ?   shortExchangeId?: StringFilter | String,
+         ?   longInstrumentId?: StringFilter | String,
+         ?   shortInstrumentId?: StringFilter | String,
+         ?   spreadPercent?: FloatFilter | Float,
+         ?   longPrice?: FloatFilter | Float,
+         ?   shortPrice?: FloatFilter | Float,
+         ?   volume24h?: FloatNullableFilter | Float | Null,
+         ?   fundingLong?: FloatNullableFilter | Float | Null,
+         ?   fundingShort?: FloatNullableFilter | Float | Null,
+         ?   createdAt?: DateTimeFilter | DateTime,
+         ?   updatedAt?: DateTimeFilter | DateTime,
+         ?   longExchange?: ExchangeRelationFilter | ExchangeWhereInput,
+         ?   shortExchange?: ExchangeRelationFilter | ExchangeWhereInput,
+         ?   longInstrument?: InstrumentRelationFilter | InstrumentWhereInput,
+         ?   shortInstrument?: InstrumentRelationFilter | InstrumentWhereInput,
+         ?   positions?: PositionListRelationFilter,
+         ?   history?: SpreadHistoryListRelationFilter
+           },
+           include: {
+             longExchange: true,
+             shortExchange: true,
+             longInstrument: true,
+             shortInstrument: true
+           }
+         })
+
+Argument `where` of type SpreadWhereUniqueInput needs at least one of `id` or `longExchangeId_shortExchangeId_symbol` arguments. Available options are marked with ?.[39m
+PrismaClientValidationError: 
+Invalid `this.prisma.spread.findUnique()` invocation in
+/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/trades/trades.service.js:24:49
+
+  21     this.spreadsService = spreadsService;
+  22 }
+  23 async enterTrade(userId, request) {
+→ 24     const spread = await this.prisma.spread.findUnique({
+           where: {
+             id: undefined,
+         ?   longExchangeId_shortExchangeId_symbol?: SpreadLongExchangeIdShortExchangeIdSymbolCompoundUniqueInput,
+         ?   AND?: SpreadWhereInput | SpreadWhereInput[],
+         ?   OR?: SpreadWhereInput[],
+         ?   NOT?: SpreadWhereInput | SpreadWhereInput[],
+         ?   symbol?: StringFilter | String,
+         ?   longExchangeId?: StringFilter | String,
+         ?   shortExchangeId?: StringFilter | String,
+         ?   longInstrumentId?: StringFilter | String,
+         ?   shortInstrumentId?: StringFilter | String,
+         ?   spreadPercent?: FloatFilter | Float,
+         ?   longPrice?: FloatFilter | Float,
+         ?   shortPrice?: FloatFilter | Float,
+         ?   volume24h?: FloatNullableFilter | Float | Null,
+         ?   fundingLong?: FloatNullableFilter | Float | Null,
+         ?   fundingShort?: FloatNullableFilter | Float | Null,
+         ?   createdAt?: DateTimeFilter | DateTime,
+         ?   updatedAt?: DateTimeFilter | DateTime,
+         ?   longExchange?: ExchangeRelationFilter | ExchangeWhereInput,
+         ?   shortExchange?: ExchangeRelationFilter | ExchangeWhereInput,
+         ?   longInstrument?: InstrumentRelationFilter | InstrumentWhereInput,
+         ?   shortInstrument?: InstrumentRelationFilter | InstrumentWhereInput,
+         ?   positions?: PositionListRelationFilter,
+         ?   history?: SpreadHistoryListRelationFilter
+           },
+           include: {
+             longExchange: true,
+             shortExchange: true,
+             longInstrument: true,
+             shortInstrument: true
+           }
+         })
+
+Argument `where` of type SpreadWhereUniqueInput needs at least one of `id` or `longExchangeId_shortExchangeId_symbol` arguments. Available options are marked with ?.
+    at wn (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at $n.handleRequestError (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@prisma/client/runtime/library.js:121:6958)
+    at $n.handleAndLogRequestError (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async TradesService.enterTrade (/Users/shuiali/Documents/FA2.0/crossspread/crossspread/services/backend-api/dist/trades/trades.service.js:24:24)
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-execution-context.js:46:28
+    at async /Users/shuiali/Documents/FA2.0/crossspread/crossspread/node_modules/@nestjs/core/router/router-proxy.js:9:17
+Client disconnected: nyNICiclgUx3iWQHAAAB
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
+No spreads:list found in Redis
