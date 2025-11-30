@@ -59,7 +59,8 @@ export default function SpreadDetail() {
     queryKey: ['spread', spreadId],
     queryFn: () => getSpreadDetail(spreadId!),
     enabled: !!spreadId,
-    refetchInterval: 2000, // Faster refresh for real-time
+    refetchInterval: 5000, // Reduced from 2000ms - WebSocket provides real-time updates
+    staleTime: 3000,
   });
 
   // Fetch OHLC candles instead of raw history
@@ -67,7 +68,8 @@ export default function SpreadDetail() {
     queryKey: ['spreadCandles', spreadId, candleInterval],
     queryFn: () => getSpreadCandles(spreadId!, candleInterval),
     enabled: !!spreadId,
-    refetchInterval: 3000, // Refetch every 3 seconds for real-time updates
+    refetchInterval: 10000, // Reduced from 3000ms - real-time updates come from WebSocket
+    staleTime: 5000,
   });
 
   const slippageMutation = useMutation({
@@ -687,10 +689,21 @@ function OrderbookDisplay({
   orderbook: { bids: OrderbookLevel[]; asks: OrderbookLevel[] };
   side: 'long' | 'short';
 }) {
-  const maxVolume = Math.max(
+  // Guard against empty orderbooks and division by zero
+  const allSizes = [
     ...orderbook.bids.map((b) => b.size),
     ...orderbook.asks.map((a) => a.size)
-  );
+  ];
+  const maxVolume = Math.max(...allSizes, 0.0001); // Use 0.0001 as minimum to prevent division by zero
+
+  // Show placeholder if no orderbook data
+  if (orderbook.bids.length === 0 && orderbook.asks.length === 0) {
+    return (
+      <div className="text-center py-8 text-gray-500 text-sm">
+        Waiting for orderbook data...
+      </div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-2 gap-4 text-xs">

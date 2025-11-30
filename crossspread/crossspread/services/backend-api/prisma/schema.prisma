@@ -108,7 +108,7 @@ model Spread {
   longInstrument   Instrument  @relation("LongInstrument", fields: [longInstrumentId], references: [id])
   shortInstrument  Instrument  @relation("ShortInstrument", fields: [shortInstrumentId], references: [id])
   positions        Position[]
-  history          SpreadHistory[]
+  // Note: SpreadHistory removed - history now uses Redis-style spread IDs directly
 
   @@unique([longExchangeId, shortExchangeId, symbol])
   @@map("spreads")
@@ -116,14 +116,14 @@ model Spread {
 
 model SpreadHistory {
   id            String   @id @default(uuid())
-  spreadId      String   @map("spread_id")
+  spreadId      String   @map("spread_id")  // Redis spread ID format: "BTC:exchange1:exchange2"
   spreadPercent Float    @map("spread_percent")
   longPrice     Float    @map("long_price")
   shortPrice    Float    @map("short_price")
   volume        Float?
   timestamp     DateTime @default(now())
 
-  spread Spread @relation(fields: [spreadId], references: [id])
+  // Note: No FK to Spread table - spread IDs come from Redis in format "TOKEN:longExchange:shortExchange"
 
   @@index([spreadId, timestamp])
   @@map("spread_history")

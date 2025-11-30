@@ -75,8 +75,8 @@ func NewSpreadDiscovery(
 		orderbooks:      make(map[string]map[connector.ExchangeID]*connector.Orderbook),
 		fundingRates:    make(map[string]map[connector.ExchangeID]float64),
 		spreads:         make(map[string]*SpreadOpportunity),
-		minSpreadBps:    5.0,  // Minimum 0.05% spread
-		minDepthUSD:     5000, // Minimum $5k depth
+		minSpreadBps:    1.0,   // Minimum 0.01% spread (lowered from 5.0 to show more opportunities)
+		minDepthUSD:     1000,  // Minimum $1k depth (lowered from 5000 to show more pairs)
 		updateInterval:  100 * time.Millisecond,
 		publishInterval: 500 * time.Millisecond,
 		done:            make(chan struct{}),

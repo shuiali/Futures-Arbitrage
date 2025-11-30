@@ -468,7 +468,8 @@ func toLower(s string) string {
 // FetchPriceTickers fetches current prices for all symbols via REST API
 // This is used for Phase 1 spread discovery before WebSocket connection
 func (c *BinanceConnector) FetchPriceTickers(ctx context.Context) ([]connector.PriceTicker, error) {
-	url := fmt.Sprintf("%s/fapi/v1/ticker/price", restBaseURL)
+	// Use 24hr ticker endpoint to get volume data as well
+	url := fmt.Sprintf("%s/fapi/v1/ticker/24hr", restBaseURL)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -486,9 +487,14 @@ func (c *BinanceConnector) FetchPriceTickers(ctx context.Context) ([]connector.P
 	}
 
 	var data []struct {
-		Symbol string `json:"symbol"`
-		Price  string `json:"price"`
-		Time   int64  `json:"time"`
+		Symbol             string `json:"symbol"`
+		LastPrice          string `json:"lastPrice"`
+		BidPrice           string `json:"bidPrice"`
+		AskPrice           string `json:"askPrice"`
+		Volume             string `json:"volume"`
+		QuoteVolume        string `json:"quoteVolume"`
+		PriceChangePercent string `json:"priceChangePercent"`
+		Time               int64  `json:"closeTime"`
 	}
 
 	if err := json.NewDecoder(resp.Body).Decode(&data); err != nil {
@@ -497,24 +503,38 @@ func (c *BinanceConnector) FetchPriceTickers(ctx context.Context) ([]connector.P
 
 	tickers := make([]connector.PriceTicker, 0, len(data))
 	for _, d := range data {
-		price, _ := strconv.ParseFloat(d.Price, 64)
-		if price <= 0 {
+		lastPrice, _ := strconv.ParseFloat(d.LastPrice, 64)
+		bidPrice, _ := strconv.ParseFloat(d.BidPrice, 64)
+		askPrice, _ := strconv.ParseFloat(d.AskPrice, 64)
+		volume, _ := strconv.ParseFloat(d.Volume, 64)
+		quoteVolume, _ := strconv.ParseFloat(d.QuoteVolume, 64)
+
+		if lastPrice <= 0 {
 			continue
 		}
 
 		// Extract base asset from symbol (e.g., BTCUSDT -> BTC)
 		canonical := extractCanonical(d.Symbol)
 
+		// Use quote volume (in USDT) for better comparison across assets
+		volumeUSD := quoteVolume
+		if volumeUSD == 0 {
+			volumeUSD = volume * lastPrice
+		}
+
 		tickers = append(tickers, connector.PriceTicker{
 			ExchangeID: connector.Binance,
 			Symbol:     d.Symbol,
 			Canonical:  canonical,
-			Price:      price,
+			Price:      lastPrice,
+			BidPrice:   bidPrice,
+			AskPrice:   askPrice,
+			Volume24h:  volumeUSD,
 			Timestamp:  time.UnixMilli(d.Time),
 		})
 	}
 
-	log.Info().Int("count", len(tickers)).Msg("Fetched Binance price tickers")
+	log.Info().Int("count", len(tickers)).Msg("Fetched Binance price tickers with volume")
 	return tickers, nil
 }
 

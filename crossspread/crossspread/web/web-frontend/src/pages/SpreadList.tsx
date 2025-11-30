@@ -41,7 +41,8 @@ export default function SpreadList() {
   const { data: spreads, isLoading } = useQuery({
     queryKey: ['spreads', filters.token],
     queryFn: () => getSpreads(filters.token || undefined, 200),
-    refetchInterval: 1000, // Faster refresh for real-time feel
+    refetchInterval: 3000, // Reduced from 1000ms to 3000ms - WebSocket provides real-time updates
+    staleTime: 2000, // Consider data stale after 2 seconds
   });
 
   // Apply all filters and sorting

@@ -89,7 +89,7 @@ func NewRestDataLoader(connectors []connector.Connector) *RestDataLoader {
 		exchangeData:    make(map[connector.ExchangeID]*ExchangeData),
 		tokenData:       make(map[string]*TokenData),
 		spreads:         make([]*RestPreliminarySpread, 0),
-		minSpreadBps:    5.0, // Minimum 0.05% spread to consider
+		minSpreadBps:    1.0, // Minimum 0.01% spread to consider (lowered from 5.0)
 		refreshInterval: 30 * time.Second,
 		parallelFetch:   true,
 	}

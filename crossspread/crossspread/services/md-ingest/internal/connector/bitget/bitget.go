@@ -291,9 +291,14 @@ func (c *BitgetConnector) FetchFundingRates(ctx context.Context) ([]connector.Fu
 	var rates []connector.FundingRate
 	for _, d := range result.Data {
 		rate, _ := strconv.ParseFloat(d.FundingRate, 64)
+		
+		// Extract canonical from symbol (e.g., BTCUSDT -> BTC)
+		canonical := extractCanonical(d.Symbol)
+		
 		rates = append(rates, connector.FundingRate{
 			ExchangeID:           connector.Bitget,
 			Symbol:               d.Symbol,
+			Canonical:            canonical,
 			FundingRate:          rate,
 			FundingIntervalHours: 8,
 			Timestamp:            time.Now(),

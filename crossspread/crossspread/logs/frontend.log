@@ -7,3 +7,7 @@
 
   ➜  Local:   http://localhost:3000/
   ➜  Network: use --host to expose
+1:58:38 AM [vite] hmr update /src/pages/SpreadDetail.tsx, /src/index.css
+1:58:55 AM [vite] hmr update /src/pages/SpreadList.tsx, /src/index.css
+1:59:03 AM [vite] hmr update /src/pages/SpreadDetail.tsx, /src/index.css
+1:59:12 AM [vite] hmr update /src/pages/SpreadDetail.tsx, /src/index.css

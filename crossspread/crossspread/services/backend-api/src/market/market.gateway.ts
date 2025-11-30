@@ -165,4 +165,20 @@ export class MarketGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const channel = `trades:${userId}`;
     this.server.to(channel).emit('trade', update);
   }
+
+  // Broadcast spreads summary to all connected clients
+  broadcastSpreadsSummary(summary: any) {
+    this.server.emit('spreads:summary', {
+      ...summary,
+      timestamp: Date.now(),
+    });
+  }
+
+  // Broadcast to all clients watching any spread (for list updates)
+  broadcastSpreadListUpdate(spreads: any[]) {
+    this.server.emit('spreads:list', {
+      spreads,
+      timestamp: Date.now(),
+    });
+  }
 }
