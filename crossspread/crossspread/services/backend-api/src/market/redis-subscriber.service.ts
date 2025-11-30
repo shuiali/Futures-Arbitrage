@@ -182,6 +182,8 @@ export class RedisSubscriberService implements OnModuleInit, OnModuleDestroy {
     this.orderbookPollInterval = setInterval(async () => {
       try {
         // Get list of active orderbook streams from Redis
+        // Use streamClient for stream operations to avoid blocking the main client
+        const streamClient = this.redis.getStreamClient();
         const client = this.redis.getClient();
         const keys = await client.keys('orderbook:*');
         
@@ -192,8 +194,8 @@ export class RedisSubscriberService implements OnModuleInit, OnModuleDestroy {
           try {
             const lastId = lastIds.get(key) || '0';
             
-            // Read new entries since last ID
-            const result = await client.xRead(
+            // Read new entries since last ID - use streamClient for xRead
+            const result = await streamClient.xRead(
               [{ key, id: lastId }],
               { COUNT: 5, BLOCK: 0 }
             );
@@ -205,6 +207,9 @@ export class RedisSubscriberService implements OnModuleInit, OnModuleDestroy {
                 // Update last ID
                 lastIds.set(key, entry.id);
                 
+                  // Debug log stream and entry id for troubleshooting
+                  this.logger.debug(`Processing stream ${key} entry ${entry.id}`);
+
                 // Parse and broadcast orderbook
                 const data = entry.message?.data;
                 if (data) {

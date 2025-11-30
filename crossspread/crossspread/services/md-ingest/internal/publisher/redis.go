@@ -64,7 +64,13 @@ func (p *RedisPublisher) PublishOrderbook(ob *connector.Orderbook) error {
 	}
 
 	// Also publish to Pub/Sub for real-time WebSocket streaming
-	return p.client.Publish(context.Background(), streamKey, string(data)).Err()
+	if err := p.client.Publish(context.Background(), streamKey, string(data)).Err(); err != nil {
+		return err
+	}
+
+	// Debug: log published channel for troubleshooting
+	fmt.Printf("[md-ingest] Published orderbook to channel/stream %s (bids=%d, asks=%d)\n", streamKey, len(ob.Bids), len(ob.Asks))
+	return nil
 }
 
 // PublishTrade publishes trade to Redis Stream

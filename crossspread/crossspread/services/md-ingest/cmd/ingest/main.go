@@ -256,6 +256,13 @@ func main() {
 			log.Fatal().Err(err).Msg("Failed to load REST data in Phase 1")
 		}
 
+		// Update spread discovery with volume data from REST
+		volumeTickers := restLoader.GetVolumeData()
+		for _, ticker := range volumeTickers {
+			spreadDiscovery.HandleTicker(ticker)
+		}
+		log.Info().Int("tickers", len(volumeTickers)).Msg("Volume data loaded into spread discovery")
+
 		// Get discovered spreads from REST data
 		discoveredSpreads := restLoader.GetDiscoveredSpreads()
 		log.Info().
@@ -294,6 +301,20 @@ func main() {
 
 			// Setup handlers
 			wsManager.SetOrderbookHandler(func(ob *connector.Orderbook) {
+				if ob == nil {
+					log.Error().Msg("received nil orderbook")
+					return
+				}
+
+				// Debug logging to help trace message flow from connectors -> publisher
+				log.Info().
+					Str("exchange", string(ob.ExchangeID)).
+					Str("symbol", ob.Symbol).
+					Int("bids", len(ob.Bids)).
+					Int("asks", len(ob.Asks)).
+					Time("ts", ob.Timestamp).
+					Msg("Orderbook update received")
+
 				if err := pub.PublishOrderbook(ob); err != nil {
 					log.Error().Err(err).Msg("Failed to publish orderbook")
 				}
@@ -321,8 +342,15 @@ func main() {
 			// Start connection monitor
 			go wsManager.MonitorConnections(ctx, 30*time.Second)
 
-			// Start periodic REST refresh for new spread discovery
-			restLoader.StartPeriodicRefresh(ctx)
+			// Start periodic REST refresh for new spread discovery with volume updates
+			restLoader.StartPeriodicRefreshWithCallback(ctx, func(rl *loader.RestDataLoader) {
+				// Update volume data after each refresh
+				volumeTickers := rl.GetVolumeData()
+				for _, ticker := range volumeTickers {
+					spreadDiscovery.HandleTicker(ticker)
+				}
+				log.Debug().Int("tickers", len(volumeTickers)).Msg("Volume data refreshed")
+			})
 
 			// Wait for shutdown signal
 			sigCh := make(chan os.Signal, 1)

@@ -30,6 +30,12 @@ export function getSocket(): Socket {
     socket.on('connect_error', (error) => {
       console.error('WebSocket connection error:', error);
     });
+
+    // Debug: log all incoming events and payloads
+    socket.onAny((event, ...args) => {
+      // Use console.debug so it's easy to filter in devtools
+      console.debug('[WS EVENT]', event, args);
+    });
   }
 
   return socket;
