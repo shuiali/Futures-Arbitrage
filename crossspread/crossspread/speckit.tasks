@@ -1,0 +1,110 @@
+# CrossSpread Tasks (speckit.tasks)
+Generated: 2025-11-30
+
+This file breaks the `speckit.plan` into concrete tasks/tickets suitable for creating GitHub issues or assigning to team members.
+
+FORMAT: [ID] Title — Owner (Est) [Priority] \n    - Description
+    - Acceptance: ...
+
+Epic A — Infra & Core
+----------------------
+[A1] Repo skeleton & CI pipeline — Tech Lead (1d) [P0]
+    - Create monorepo layout, GitHub Actions skeleton (lint, typecheck), PR template.
+    - Acceptance: CI pipeline runs on PR and passes lint + typecheck.
+
+[A2] Docker Compose local dev — DevOps (1d) [P0]
+    - Compose file with postgres, redis, prometheus, grafana, volumes, and healthchecks.
+    - Acceptance: `docker-compose up` starts services and healthchecks report OK.
+
+[A3] DB schema & migrations — Backend (2d) [P0]
+    - Prisma schema & migrations for users, api_keys, spreads, spread_history, spread_candles, orders, positions, audit_logs.
+    - Acceptance: `npx prisma migrate dev` applies migrations; seed admin user works.
+
+[A4] Dev README & env example — Tech Lead (0.5d) [P1]
+    - Clear dev-run steps and .env.example.
+
+Epic B — Exchange Connectors & Market Data
+-----------------------------------------
+[B1] Connector interface + unit tests — MD-Eng (2d) [P0]
+    - Define adapter interface; add FetchKlines signature; add small unit tests for normalizers.
+
+[B2] Binance adapter (WS L2 + REST) — MD-Eng (4d) [P0]
+    - Implement WS L2 handling, REST resync, klines, and publisher to Redis.
+
+[B3] Bybit adapter (WS L2 + REST) — MD-Eng (4d) [P0]
+    - Same as Binance for Bybit's v5 API.
+
+[B4] OKX adapter — MD-Eng (3d) [P1]
+[B5] KuCoin adapter — MD-Eng (3d) [P1]
+
+[B6] Redis Streams publisher & docs — MD-Eng (2d) [P0]
+    - Document keys and message schema for `spread:*`, `orderbook:*`, `ticker:*`.
+
+Epic C — Spread Engine & Storage
+--------------------------------
+[C1] Spread discovery worker & scoring — Backend (3d) [P0]
+    - Compute candidate spreads across exchange pairs; scoring function.
+
+[C2] Spread history writer (throttled) — Backend (2d) [P0]
+    - recordSpreadHistoryThrottled implementation and tests.
+
+[C3] Candle aggregation service — Backend (2d) [P0]
+    - Maintain 1m/5m/15m/1h candles in DB; mark synthetic candles when necessary.
+
+[C4] API endpoints: `/spreads`, `/spreads/{id}`, `/spreads/{id}/candles` — Backend (2d) [P0]
+
+[C5] Frontend read-only: spread list & spread detail pages — Frontend (5d) [P0]
+    - Lightweight-Charts integration, real-time updates via /ws/market.
+
+Epic D — Execution Microservice (Rust)
+-------------------------------------
+[D1] Exec service skeleton & internal auth — Execution Eng (2d) [P0]
+    - REST/gRPC endpoints, SERVICE_SECRET auth, secure creds handling.
+
+[D2] Binance order adapter — Execution Eng (5d) [P0]
+    - Place limit orders, cancel, query; test against testnet.
+
+[D3] Slicing engine & scheduler — Execution Eng (5d) [P0]
+    - Default 5% slice, 100ms interval, adaptive resizing logic.
+
+[D4] Simulation mode integration — Backend+Exec (3d) [P0]
+    - Walk-the-book simulator for sim trades.
+
+[D5] Emergency exit flow — Execution Eng (2d) [P0]
+
+Epic E — Trade Ticket, Admin & Security
+---------------------------------------
+[E1] Trade ticket UI & logs — Frontend (4d) [P0]
+    - Per-slice plan, execution status panel, cancel remainder action.
+
+[E2] Admin UI: users & expiry — Frontend+Backend (3d) [P0]
+
+[E3] API key CRUD & encryption (AES-256-GCM) — Backend (3d) [P0]
+    - Key rotation instructions and tests.
+
+[E4] Audit logging for all trade actions — Backend (2d) [P0]
+
+Epic F — Observability, Testing & Ops
+-------------------------------------
+[F1] Prometheus metrics + Grafana dashboards — DevOps (3d) [P1]
+
+[F2] Structured logging & correlation IDs — Backend/MD-Eng (2d) [P1]
+
+[F3] Integration acceptance tests (sim E2E, security) — QA (5d) [P0]
+
+[F4] Operator runbook + emergency procedures — Ops (2d) [P0]
+
+Backlog Tasks (Post-MVP / incremental)
+-------------------------------------
+- Add remaining adapters: MEXC, Bitget, Gate.io, BingX, CoinEx, LBank, HTX — MD-Eng (each 2–4d) [P2]
+- Atomic execution research & PoC — Exec Eng (multi-week) [P2]
+- Backtest engine with L2 replay — Research/Eng (TBD) [P2]
+
+How to use
+----------
+- Create GitHub issues from items above. Use the bracket ID as issue title prefix (e.g., "[B2] Binance adapter (WS L2 + REST)").
+- Assign owners and set milestones according to `speckit.plan`.
+
+Notes
+-----
+- Estimates are rough and assume an experienced team with existing infra knowledge. Parallelize where teams exist.

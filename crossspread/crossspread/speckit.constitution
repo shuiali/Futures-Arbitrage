@@ -1,0 +1,79 @@
+CrossSpread Constitution v1.0
+================================
+
+Purpose
+-------
+Build and operate a self-hosted futures arbitrage SaaS that safely discovers, displays, simulates, and executes cross-exchange futures/perpetual spreads with predictable limit-order execution and low-latency guarantees.
+
+Core Principles (short)
+-----------------------
+1. Execution determinism: trades execute only when explicitly commanded. Entries are limit-only by default; market-style aggression is only allowed for the documented Emergency Exit flow.
+2. Fail-safe first: actions that materially change risk must be auditable, require explicit confirmation, and surface expected slippage/fees before execution.
+3. Least-privilege credentials: API keys encrypted at rest, decrypted only in memory for execution, never logged in plaintext.
+4. Admin-only accounts: no public registration or KYC; admins create/manage users and expiry.
+5. Co-located low-latency execution: execution microservice runs in a co-located environment (container) and is independently deployable.
+6. Observable & auditable: structured logs, metrics, and immutable audit records for all execution decisions and user actions.
+7. Adapter isolation: exchange-specific behaviors are contained in small, testable adapters behind a clear interface.
+8. Simulation parity: paper mode mirrors live flow (slicing, walk-the-book fills, PnL) for realistic testing.
+9. Safety by default: default slice size and price tolerances lean conservative; users/admins may opt into more aggressive settings.
+10. Simplicity-first: pick pragmatic, observable tooling for MVP (Redis Streams + Postgres/Timescale); re-architect only when justified by metrics.
+
+Engineering Contract (2–4 bullets)
+--------------------------------
+- Inputs: normalized L2 + tick streams, admin-provisioned encrypted credentials, user trade commands (spread_id, size_in_coins, slicing, mode).
+- Outputs: sliced limit orders on exchanges, order/fill records, positions & PnL, real-time UI updates, structured audit logs.
+- Error modes: partial fills, exchange outages, rate-limit errors. System must persist partial state, retry per-exchange with backoff, and surface human-readable errors.
+- Success criteria: requested size_in_coins either fully filled (or user-cancelled) with complete audit trail and PnL/fees computed and stored.
+
+Top edge cases & mitigations
+---------------------------
+1. Partial fills across legs: record partial fills, continue attempts for remainder per configured tolerance, or cancel/rollback per user policy.
+2. Exchange outage mid-slice: pause the affected leg; continue based on user tolerance; otherwise cancel remaining slices and record outcome.
+3. Sudden adverse price moves: enforce price_tolerance_pct; if exceeded, pause/requote and surface to user for decision.
+4. Expired/invalid API keys: validate keys before use and fail trade with a clear error; allow admin key rotation.
+5. Rate-limit failures: implement per-exchange throttling and retries with exponential backoff; emit metrics and alerts on throttling.
+6. Orderbook sequence break / resync failure: pause derived spreads until a REST resync confirms consistency.
+7. Redis/stream growth: apply TTL/compaction, monitor memory usage, and alert when thresholds are crossed.
+
+Operational Rules (concrete)
+----------------------------
+- Enforce limit-only entries at API and execution service layer. Emergency exit uses aggressive limit orders crossing the book and must display explicit slippage risk.
+- Default slicing: 5% per slice, default interval 100ms. Admins can set global defaults; users may override within safe bounds.
+- Best-effort execution: default mode is best-effort with configurable tolerance. Atomic two-phase commit is OFF by default.
+- Primary sizing input: size_in_coins. Capital inputs converted to coin units at current price and shown prior to execution.
+- Encryption: AES-256-GCM with env-key for MVP; production MUST use Vault/KMS.
+- Admin-only user management: endpoints restricted to admin role; no public registration.
+- Candle provenance: candles come from spread history; synthetic candles allowed but MUST be marked as synthetic.
+
+Acceptance Criteria Mapping (MVP)
+--------------------------------
+- E2E sim demo (paper): deterministic slicing, simulated walk-the-book fills, PnL & fees computed — covers Execution Determinism, Simulation Parity, Observable & Auditable.
+- Live testnet: encrypted keys, limit-only entries, audit logs — covers Least-Privilege Credentials, Fail-safe first, Observable & Auditable.
+- Security: no secrets in logs, admin-only accounts — covers Least-Privilege Credentials, Admin-only accounts.
+- Performance: UI spread update latency <200ms (median) — covers Co-located execution, Simplicity-first and Observability.
+
+Developer rules & testing
+-------------------------
+- Adapter interface: implement and test FetchInstruments, FetchOrderbookSnapshot, SubscribeOrderbook, FetchKlines, PlaceOrder, CancelOrder, QueryOrder.
+- Tests required: unit tests for parsing and walk-the-book; integration sim test for trade enter/exit; CI gates require tests on adapter or execution changes.
+- Code review: changes to execution, encryption, or admin auth require two reviewers, one senior.
+
+Runbook highlights (short)
+-------------------------
+- Deploy: run migrations, start Redis/Postgres, start md-ingest REST discovery, then selectively enable WebSockets for discovered spreads.
+- Incident response: (1) Kill execution service to stop live orders, (2) check Redis and DB health, (3) check exchange rate-limit and status, (4) review audit logs for partial fills, (5) restart services after remediation.
+- Emergency stop: global kill switch to prevent execution service from sending orders; documented operator steps required in the ops runbook.
+
+Governance
+----------
+- Constitution changes require an RFC PR with rationale and migration steps; approval required from product owner + one senior engineer.
+- Risky features (atomic execution, auto-trading) must be behind feature flags and rolled out to testnets first.
+
+Short copyable header
+---------------------
+Name: CrossSpread Constitution v1.0
+Purpose: Self-hosted futures arbitrage SaaS with safe limit-order, slicing-first execution model.
+Core principles: Execution determinism; Fail-safe first; Least-privilege credentials; Admin-only accounts; Observable & auditable; Adapter isolation; Simulation parity.
+
+---
+Generated: 2025-11-30

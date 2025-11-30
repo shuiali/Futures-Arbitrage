@@ -1,0 +1,84 @@
+CrossSpread Quality Checklists
+==============================
+
+Purpose: Provide practical, runnable checklists to validate requirements completeness, clarity, and consistency across the CrossSpread project spec and implementation. Use these during PR review, design reviews, and release gating.
+
+1) Requirements Completeness Checklist
+--------------------------------------
+- [ ] Every API endpoint in the spec has an enum entry in the API contract and a controller/service skeleton in the backend.
+- [ ] All exchanges listed (11) have an adapter stub or issue assigned; at least 4 adapters have full implementations for MVP.
+- [ ] All data stores described (Postgres, Redis, Timescale/Hypertables) have schema/migrations or a documented plan.
+- [ ] Security requirements (API key encryption, TLS, admin-only flows) are implemented or have tracked tasks with owners.
+- [ ] Trade flows (enter/exit/emergency) have explicit sequence diagrams or step lists describing side effects and audit events.
+- [ ] Non-functional requirements (latency targets, retention, concurrency) have measurable metrics and monitoring targets defined.
+
+2) Requirements Clarity Checklist
+--------------------------------
+- [ ] Each requirement is phrased unambiguously (no 'should' or 'may' unless accompanied by acceptance criteria).
+- [ ] For every engineering decision (e.g., Redis Streams vs Kafka), the rationale and acceptance conditions are documented.
+- [ ] All input shapes and units are specified (e.g., size_in_coins is coin units; capital is USD/USDT; timezones are UTC+2 in UI).
+- [ ] Error/edge cases are specified for each API (e.g., invalid API key, partial fill, exchange outage) with expected HTTP status codes and error messages.
+
+3) Requirements Consistency Checklist
+-----------------------------------
+- [ ] Terminology is consistent across docs (`size_in_coins`, `slice_size_in_coins`, `spread_percent`, `canonical symbol`).
+- [ ] Time units and timezone usage are consistent: store timestamps in UTC, UI default in UTC+2, API uses ISO8601 UTC.
+- [ ] Pricing and fee conventions are consistent (all fees in percent vs absolute, maker/taker naming consistent per exchange adapter).
+- [ ] Data retention numbers match across spec, DB schema, and infra docs (e.g., 1 month ticks, 6 months spread history).
+
+4) Security & Secrets Checklist
+------------------------------
+- [ ] API keys encrypted at rest with AES-256-GCM for MVP; KMS/Vault migration task exists for production.
+- [ ] Secrets are not logged; add automated grep in CI to scan logs for known secret patterns after test runs.
+- [ ] Admin endpoints are guarded by role-based auth; confirm via unit/integration tests that non-admins cannot access.
+- [ ] TLS is enforced in production deployment manifests; dev environment documents exception and risk.
+- [ ] Service-to-service auth (SERVICE_SECRET) documented and testable in integration tests.
+
+5) Execution & Trade Safety Checklist
+-----------------------------------
+- [ ] Entry trades use limit-only orders by default; enforcement checked in backend and execution microservice.
+- [ ] Default slicing policy implemented (5% slice, 100ms interval) and overridable with safe bounds.
+- [ ] Emergency exit behavior documented and surfaced in UI with slippage warnings.
+- [ ] Partial fill behavior and audit logging implemented and covered by tests (sim & live testnet where possible).
+- [ ] Execution service decrypts credentials only in memory and never writes plaintext to disk or logs.
+
+6) Connector & Market Data Checklist
+-----------------------------------
+- [ ] Connector interface methods implemented or stubbed for all 11 exchanges.
+- [ ] Kline/ohlcv endpoints exist in adapters for historical charting; tests validate data shape and time boundaries.
+- [ ] REST-first discovery and selective WS subscription behavior covered by integration tests.
+- [ ] Orderbook snapshot + diffs logic tested against recorded exchange messages to avoid sequence regressions.
+
+7) API & Frontend Checklist
+---------------------------
+- [ ] `GET /spreads`, `GET /spreads/{id}`, and `GET /spreads/{id}/candles` return documented shapes and include metadata (isSynthetic, source, lastUpdated).
+- [ ] Frontend uses `size_in_coins` as primary input and shows converted capital as secondary where provided.
+- [ ] Candlestick chart displays candles with provenance flag and updates real-time via WebSocket without re-requesting full history unnecessarily.
+- [ ] Trade ticket UI shows per-slice plan before execution, including estimated price, slippage, and fees.
+
+8) Observability & Testing Checklist
+-----------------------------------
+- [ ] Prometheus metrics published: exchange_conn_status, spread_calc_latency, publish_rate, order_exec_latency, fill_rate.
+- [ ] Alerts configured for: Redis memory high, md-ingest disconnected from exchange > X sec, execution errors > threshold, high partial-fill rate.
+- [ ] Unit tests for adapters, spread calc, candle aggregation.
+- [ ] Integration sim E2E test (playback L2) that runs in CI and validates end-to-end sim trade and PnL calculation.
+
+9) Deployment & Ops Checklist
+----------------------------
+- [ ] Docker Compose dev: start, healthcheck, migrations apply, seed admin user.
+- [ ] Helm/K8s stubs include TLS, secrets wiring, resource limits, and liveness/readiness probes.
+- [ ] Operator runbook includes emergency stop, kill switch, and step-by-step trade mitigation instructions.
+
+10) Acceptance Criteria Mapping Checklist
+----------------------------------------
+- [ ] Each acceptance criterion in the spec maps to at least one automated test, one manual test case, and a monitoring metric.
+- [ ] E2E sim demo: checklist exists and CI job runs the sim demonstration scenario.
+- [ ] Live testnet demo steps documented with required testnet keys and safety checks.
+
+Usage notes
+-----------
+• Use these checklists as PR gates: reviewer must tick relevant sections before merging features that affect them.
+• Add failing items to the project's backlog with clear owners and due dates.
+• Run the security & execution checks after any change to adapter code, execution logic, or secrets handling.
+
+Generated: 2025-11-30

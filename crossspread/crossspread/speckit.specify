@@ -1,0 +1,439 @@
+# CrossSpread - Futures Arbitrage Platform
+## Complete Project Specification v2.0
+
+---
+
+## 1. PROJECT OVERVIEW
+
+### 1.1 Purpose
+A self-hosted futures arbitrage SaaS platform for crypto derivatives across 11 exchanges. Features a web terminal showing real-time spreads, dual orderbooks, realistic slippage simulation, and one-click cross-exchange limit-order execution via multiple small orders to minimize slippage.
+
+### 1.2 Target Users
+- Multi-user system with admin-created accounts only, no public registration or KYC
+- User API-key input via secure encrypted UI storage
+- Initial capacity: 10-100 concurrent users
+- Ultra-low latency execution layer designed for co-located servers
+
+### 1.3 Supported Exchanges (All 11 Required for MVP)
+Binance Futures (USDT-M Perpetual), Bybit (Linear Perpetual), OKX (SWAP), KuCoin Futures (USDT Perpetual), MEXC Futures (USDT-M), Bitget (USDT-M), Gate.io Futures (USDT Settle), BingX (Perpetual Swap), CoinEx (Linear Futures), LBank (Linear Futures), HTX/Huobi (Linear Swap).
+
+Each exchange requires both WebSocket connections for real-time data streaming and REST API integration for order placement, account queries, and data synchronization.
+
+### 1.4 Instruments
+All available perpetual futures from each exchange. The system must discover and normalize instruments automatically. UI displays all instruments with comprehensive filters for 24-hour volume, spread percentage, funding rate differential, and minimum orderbook depth in USD.
+
+---
+
+## 2. ARCHITECTURE
+
+### 2.1 Service Components
+
+**Market Data Ingestion Service (Go)**
+This service connects to all 11 exchanges simultaneously via WebSocket and REST APIs. It normalizes instrument symbols to a canonical format (BTC, ETH, etc.) regardless of exchange-specific naming conventions. The service operates in two phases: first loading all instrument metadata and current prices via REST APIs, then establishing WebSocket connections for real-time orderbook and ticker updates. All normalized data is published to Redis for consumption by other services.
+
+**Backend API Service (TypeScript/NestJS)**
+Handles all client-facing REST and WebSocket endpoints. Manages user authentication via JWT tokens, user CRUD operations for admins, API key encrypted storage and retrieval, spread queries from Redis, orderbook data serving, and WebSocket broadcasting of real-time updates to connected frontend clients. Also provides internal service-to-service API for the market data ingestion service to retrieve decrypted exchange credentials.
+
+**Execution Microservice (Rust) - Planned**
+Low-latency order placement service designed for co-located deployment. Responsible for sliced limit order execution, credential decryption in-memory only during execution, parallel order placement across both legs of a spread trade, and fill monitoring with retry logic.
+
+**Frontend Application (React/TypeScript/Vite)**
+Single-page application providing the trading terminal interface. Displays spread list with real-time updates, spread detail pages with dual orderbooks and charts, trade execution interface, settings for API key management, and admin interface for user management.
+
+### 2.2 Data Flow Architecture
+
+Exchange WebSocket feeds connect to the market data ingestion service, which normalizes all data and computes spreads across exchange pairs. Normalized data flows into Redis using both hash structures for current state and streams for historical data. The backend API service subscribes to Redis for changes and broadcasts updates via Socket.io WebSocket to connected frontend clients. Frontend clients also poll REST endpoints for data that doesn't require real-time updates.
+
+### 2.3 Infrastructure Components
+
+PostgreSQL database stores users, API keys (encrypted), orders, positions, and audit logs. Redis serves as both the real-time data store for spreads/orderbooks and the pub/sub message broker between services. Docker Compose orchestrates local development with containers for PostgreSQL and Redis.
+
+---
+
+## 3. DATABASE DESIGN
+
+### 3.1 User Management
+
+Users table stores account credentials with bcrypt-hashed passwords, role designation (admin or regular user), active status flag, optional expiration date for time-limited accounts, and standard timestamps. Admins can create, disable, and expire user accounts.
+
+API Keys table stores exchange credentials encrypted with AES-256. Each record contains the user reference, exchange identifier, encrypted API key, encrypted API secret, optional encrypted passphrase for exchanges that require it, a human-readable label, permission flags, and active status. The encryption key is provided via environment variable and never stored in the database.
+
+### 3.2 Exchange Data
+
+Exchanges table maintains the list of supported exchanges with display names, active status, and exchange-specific configuration as JSON.
+
+Instruments table stores all discovered futures instruments with exchange reference, native symbol, base asset, quote asset, contract type, tick size, lot size, minimum notional, maximum leverage, maker/taker fees, and active status. Unique constraint on exchange plus symbol combination.
+
+### 3.3 Spread Tracking
+
+Spreads table records discovered spread opportunities with canonical symbol, references to both long and short exchanges and instruments, active status, and creation timestamp. Unique constraint ensures one record per exchange pair per canonical symbol.
+
+Spread History table stores time-series data for historical spread analysis with spread reference, spread percentage, prices from both legs, funding rates, volume, and timestamp. Indexed for efficient time-range queries with a 6-month retention policy.
+
+Spread Candles table stores OHLC aggregated data for chart display with spread reference, time interval (1m, 5m, 15m, 1h, 4h, 1d), open time, OHLC values, and volume. Unique constraint on spread, interval, and open time combination.
+
+### 3.4 Trading Data
+
+Positions table tracks open and closed spread positions with user reference, spread reference, position status (pending, open, closing, closed, cancelled), side designation, size in coins, entry and exit spread values, realized PnL, total fees, and timestamps.
+
+Orders table stores individual exchange orders with user and optional position references, exchange identifier, symbol, side, type, price, size, filled size, status, slice indexing for sliced orders, exchange order ID, and timestamps.
+
+Audit Log table records all significant actions for compliance and debugging with user reference, action type, resource type, resource ID, detail JSON, IP address, and timestamp.
+
+---
+
+## 4. REDIS DATA STRUCTURES
+
+### 4.1 Spread State Storage
+
+Each spread is stored as a Redis hash with key pattern "spread:CANONICAL:LONG_EXCHANGE:SHORT_EXCHANGE". Fields include canonical symbol, both exchange names, both native symbols, both current prices, spread percentage, spread in basis points, both funding rates, net funding differential, 24-hour volume, orderbook depth for both sides, minimum depth, timestamp, and composite ranking score.
+
+### 4.2 Orderbook Streaming
+
+Orderbook updates are published to Redis streams with key pattern "orderbook:EXCHANGE:SYMBOL". Each entry contains message type (snapshot or update), bid levels as nested array of price/size pairs, ask levels in same format, and timestamp.
+
+### 4.3 Ticker State Storage
+
+Current ticker data is stored as Redis hashes with key pattern "ticker:EXCHANGE:SYMBOL". Fields include last price, best bid, best ask, 24-hour volume, current funding rate, and next funding timestamp.
+
+---
+
+## 5. API DESIGN
+
+### 5.1 Authentication Endpoints
+
+Login endpoint accepts username and password, returns JWT access token and user profile. Logout endpoint invalidates the current session. All other endpoints require valid JWT in Authorization header.
+
+### 5.2 User Management Endpoints (Admin Only)
+
+List users with pagination, create new user with username/password/role/expiration, get single user by ID, update user properties, delete user. All user management restricted to admin role.
+
+### 5.3 Spread Endpoints
+
+List spreads with comprehensive filtering (limit, offset, canonical symbol, min/max spread, exchanges, sort field and order). Returns paginated spread list with total count. Get single spread by ID returns full detail including current orderbooks from both exchanges. Get spread candles with interval and time range parameters for chart data. Get spread history for time-series analysis.
+
+### 5.4 API Key Management Endpoints
+
+List current user's API keys (returns metadata only, not actual keys). Add new API key with exchange, key, secret, optional passphrase, and label. Delete API key by ID. Keys are encrypted before storage and decrypted only when needed for order execution.
+
+### 5.5 Asset Status Endpoints
+
+Get deposit status for an asset on a specific exchange. Get withdrawal status for an asset on a specific exchange. These endpoints query exchange APIs in real-time using stored credentials.
+
+### 5.6 Trading Endpoints
+
+Enter spread trade with spread ID, size in coins, slicing parameters (slice size, interval), and mode (live or simulation). Returns position ID and created orders. Exit position by ID with optional emergency flag for aggressive exit. List user positions with filtering. Get position details including all associated orders.
+
+### 5.7 Internal Service Endpoints
+
+Get credentials for an exchange, authenticated via service secret header. Used by market data ingestion service to retrieve decrypted exchange credentials for authenticated exchange API calls.
+
+### 5.8 WebSocket Gateway
+
+WebSocket namespace at /ws/market with JWT authentication. Subscribe message specifies channel (spread or orderbook) and optional spread ID. Unsubscribe message removes subscription. Server broadcasts spread:update and orderbook:update events to subscribed clients.
+
+---
+
+## 6. MARKET DATA INGESTION SERVICE
+
+### 6.1 Architecture Overview
+
+The service is written in Go for performance and concurrency. It implements a connector interface that each exchange adapter must satisfy. The main process orchestrates connection to all exchanges, data normalization, spread calculation, and Redis publishing.
+
+### 6.2 Connector Interface Requirements
+
+Each exchange connector must implement methods for: returning exchange name, connecting and disconnecting, fetching instruments via REST, fetching price tickers via REST, fetching funding rates via REST, fetching orderbook snapshots via REST, subscribing to orderbook updates via WebSocket, subscribing to ticker updates via WebSocket, and setting callback handlers for real-time data.
+
+### 6.3 Two-Phase Data Loading Strategy
+
+Phase 1 (REST Loading): On startup, the service fetches all instrument metadata and current prices from all 11 exchanges in parallel via REST APIs. This provides immediate data availability without waiting for WebSocket streams to populate. After REST loading, the spread engine computes all possible spreads across exchange pairs.
+
+Phase 2 (WebSocket Streaming): After REST loading completes, the service identifies which symbols have active spreads and establishes WebSocket connections only for those symbols. This selective subscription reduces resource usage while maintaining real-time updates for relevant instruments.
+
+### 6.4 Symbol Normalization
+
+Each exchange uses different symbol naming conventions. The normalizer extracts the base asset from exchange-specific symbols and maps them to canonical symbols. For example, BTCUSDT (Binance), BTC-USDT (KuCoin), and BTC_USDT (Gate.io) all normalize to canonical symbol BTC.
+
+### 6.5 Spread Calculation Engine
+
+For each canonical symbol, the engine identifies all exchanges that list that instrument. It then computes spreads for every possible exchange pair (55 pairs for 11 exchanges). Spread percentage is calculated as (short_price - long_price) / long_price * 100, where the exchange with the lower price is the long leg and the exchange with the higher price is the short leg.
+
+Each spread is scored based on multiple factors: spread percentage magnitude, combined 24-hour volume, funding rate differential, and minimum orderbook depth. This composite score helps users identify the most attractive opportunities.
+
+### 6.6 Exchange-Specific Implementation Notes
+
+**Binance**: Uses combined stream WebSocket endpoint. Orderbook updates are differential and require local book maintenance. Funding rates available via separate REST endpoint.
+
+**Bybit**: V5 API with linear perpetual category. WebSocket provides full orderbook snapshots. Ticker includes funding rate.
+
+**OKX**: Swap instrument type. WebSocket requires channel subscription format with instId parameter. Book delivery can be checksum-validated.
+
+**KuCoin**: Requires WebSocket token from REST endpoint before connecting. Uses bullet endpoints for WebSocket connection. Funding rate is returned as a number, not string.
+
+**MEXC**: Contract API uses /edge WebSocket endpoint. REST responses may wrap data differently than WebSocket.
+
+**Bitget**: Mix API for futures. WebSocket uses instType parameter for subscription.
+
+**Gate.io**: Futures API uses settle parameter (usdt). Orderbook subscription payload order is contract, level, interval. The "all" event indicates full snapshot delivery.
+
+**BingX**: Swap API. Response code field is numeric, not string. WebSocket may require gzip decompression.
+
+**CoinEx**: Linear futures API. Requires User-Agent header to avoid CloudFront 403 errors. URL length limits require batching ticker requests. WebSocket uses both gzip and deflate compression.
+
+**LBank**: API responses are wrapped in data objects. Numeric fields like fees are returned as numbers, not strings. WebSocket may use compression. Rate limiting returns error code -6.
+
+**HTX**: Linear swap API. All WebSocket messages are gzip compressed and require decompression before parsing. Numeric fields in responses vary between string and number types.
+
+### 6.7 Error Handling and Resilience
+
+WebSocket connections implement automatic reconnection with exponential backoff. REST API calls implement retry logic with configurable attempts and delays. Exchange-specific rate limits are respected with request throttling. Partial failures (some exchanges unavailable) do not prevent the service from operating with available exchanges.
+
+---
+
+## 7. BACKEND API SERVICE
+
+### 7.1 Framework and Structure
+
+Built with NestJS (TypeScript) using modular architecture. Each domain (auth, users, spreads, market, assets, internal) is implemented as a separate module with controller, service, and DTO classes.
+
+### 7.2 Authentication Implementation
+
+JWT-based authentication with configurable expiration. Login validates credentials against bcrypt-hashed passwords in database. JWT payload includes user ID, username, and role. Guards protect routes requiring authentication or admin role.
+
+### 7.3 Spread Service Implementation
+
+The spread service queries Redis for current spread data, applying filters and sorting as requested. For spread detail, it fetches both the spread data and current orderbooks from Redis streams. For candles, it first checks the database for historical data, then generates real-time candles from current spread data if no history exists.
+
+Real-time candle generation: When no historical candle data exists (fresh deployment or new spread), the service generates synthetic candles based on the current spread value. These candles show the current spread as a flat line, providing chart data until historical data accumulates.
+
+### 7.4 Market Gateway Implementation
+
+Socket.io WebSocket gateway with namespace /ws/market. Authenticates connections via JWT token in auth payload. Manages subscription rooms for spread and orderbook channels. Subscribes to Redis pub/sub for spread updates and broadcasts to subscribed clients.
+
+### 7.5 API Key Encryption
+
+API keys are encrypted using AES-256-GCM before storage. The encryption key is provided via environment variable (32 bytes, base64 encoded for production; default development key for local testing). Decryption occurs only when credentials are needed for exchange API calls or when the internal service endpoint is called by md-ingest.
+
+### 7.6 Internal Service Authentication
+
+Service-to-service calls use a shared secret in the Authorization header with format "Service {secret}". This bypasses JWT authentication for internal endpoints that md-ingest needs to call.
+
+---
+
+## 8. FRONTEND APPLICATION
+
+### 8.1 Technology Stack
+
+React 18 with TypeScript, built with Vite for fast development. Tailwind CSS for styling. React Query for server state management with automatic refetching. Zustand for client state (authentication). Socket.io client for WebSocket connections. Lightweight Charts (TradingView) for spread charts.
+
+### 8.2 Application Structure
+
+Single-page application with React Router for navigation. Protected routes require authentication. Admin routes require admin role. Layout component provides consistent navigation and structure.
+
+### 8.3 Authentication Flow
+
+Login page accepts username and password, calls auth API, stores JWT token and user profile in Zustand store (persisted to localStorage). Protected route component redirects unauthenticated users to login. Logout clears stored credentials and disconnects WebSocket.
+
+### 8.4 Spread List Page
+
+Displays all discovered spreads in a sortable, filterable table. Columns include canonical symbol, exchange pair, spread percentage, volume, funding rates, and depth. Filters allow searching by symbol, filtering by minimum spread, minimum volume, and specific exchanges. Sorting available on all numeric columns. Data refreshes every 1 second via React Query polling. Row click navigates to spread detail.
+
+### 8.5 Spread Detail Page
+
+Header section displays spread summary: canonical symbol, exchange pair names, current spread percentage with color coding (green positive, red negative), current prices for both legs, funding rates, and minimum depth.
+
+Chart section displays spread percentage over time using Lightweight Charts candlestick chart. Time interval selector allows switching between 1m, 5m, 15m, 1h, 4h, 1d intervals. Chart data refreshes every 3 seconds.
+
+Orderbook section displays side-by-side orderbooks for both exchanges. Each orderbook shows bid levels (green) and ask levels (red) with price and size. Depth visualization shows relative size of each level. Data updates via WebSocket subscription.
+
+Trade ticket section (when implemented) will allow entering size in coins, configuring slicing parameters, and executing the spread trade.
+
+### 8.6 Settings Page
+
+API key management tab allows adding exchange API keys (key, secret, optional passphrase), viewing existing keys (masked), and deleting keys. Profile tab shows user information.
+
+### 8.7 Admin Pages
+
+User management page (admin only) lists all users with status indicators, allows creating new users with expiration dates, enables/disables accounts, and deletes users.
+
+### 8.8 WebSocket Integration
+
+Socket.io client connects to backend WebSocket gateway on app initialization (after login). Subscribes to spread channel for real-time spread updates. Subscribes to orderbook channel when viewing spread detail. Updates local state when events received, triggering UI updates.
+
+### 8.9 Error Handling and Loading States
+
+React Query provides loading, error, and success states for all API calls. Loading skeletons prevent layout shift during data fetches. Error boundaries catch and display errors gracefully. WebSocket connection errors trigger reconnection attempts with user notification.
+
+---
+
+## 9. INFRASTRUCTURE
+
+### 9.1 Docker Compose Configuration
+
+Local development uses Docker Compose with two services: PostgreSQL 15 (Alpine) with persistent volume for data, exposed on port 5432; Redis 7 (Alpine) with persistent volume for data, exposed on port 6379.
+
+### 9.2 Startup Script Requirements
+
+The startup script must: start Docker Compose services, wait for PostgreSQL and Redis to be ready, run Prisma migrations/generate, build and start the backend API service, build and start the market data ingestion service, start the frontend development server. All service logs should be written to a logs directory with separate files per service. Process IDs should be tracked for clean shutdown.
+
+### 9.3 Shutdown Script Requirements
+
+The shutdown script must: stop all application processes gracefully, optionally stop Docker Compose services, clean up PID files and temporary data.
+
+### 9.4 Environment Variables
+
+Required variables: DATABASE_URL (PostgreSQL connection string), REDIS_URL (Redis connection string), JWT_SECRET (secret for JWT signing), ENCRYPTION_KEY (32-byte base64 key for API key encryption), SERVICE_SECRET (shared secret for internal service auth).
+
+Optional variables: API_URL (backend URL for md-ingest), EXCHANGES (comma-separated list of exchanges to enable), various port configurations.
+
+---
+
+## 10. EXECUTION MICROSERVICE (RUST) - SPECIFICATION
+
+### 10.1 Purpose and Requirements
+
+Low-latency order execution service designed for co-located deployment near exchange servers. Must handle sliced limit order placement across two exchanges simultaneously for spread trades.
+
+### 10.2 Core Functionality
+
+Credential management: Receive encrypted credentials from backend, decrypt in memory only during execution, never persist plaintext.
+
+Slicing engine: Accept total size and slicing parameters (slice count or slice size, interval between slices). Calculate individual slice sizes. Execute slices in sequence with configurable delay.
+
+Order placement: Use exchange REST APIs for order placement. Implement adapters for each exchange's signing requirements. Handle rate limits and retry logic.
+
+Fill monitoring: Track order status via exchange WebSocket or REST polling. Report partial fills to backend. Continue with remaining slices or retry unfilled portions.
+
+Emergency exit: Accept emergency exit command. Place aggressive limit orders (crossing the spread) on both legs. Report execution results and slippage.
+
+### 10.3 Exchange Adapter Interface
+
+Each exchange adapter must implement: API signing for authenticated requests, order placement (limit orders with price and size), order cancellation, order status query, position query, and balance query.
+
+### 10.4 Communication with Backend
+
+gRPC or REST API for receiving trade commands and reporting results. Commands include: execute spread entry, execute spread exit, emergency exit, cancel pending orders. Results include: order IDs, fill status, errors, and position updates.
+
+---
+
+## 11. SECURITY REQUIREMENTS
+
+### 11.1 API Key Protection
+
+All exchange API keys must be encrypted at rest using AES-256-GCM. Encryption key must be provided via environment variable, never hardcoded. Keys are decrypted only in memory when needed for API calls. Decrypted keys are never logged or persisted.
+
+### 11.2 Authentication Security
+
+Passwords are hashed using bcrypt with appropriate work factor. JWT tokens have configurable expiration (default 24 hours). Tokens include only necessary claims (user ID, role).
+
+### 11.3 Transport Security
+
+Production deployment must use HTTPS/TLS for all API endpoints. WebSocket connections must use WSS in production. Internal service communication should use TLS in production.
+
+### 11.4 Logging Security
+
+Logs must never contain: API keys, secrets, passwords, or full JWT tokens. Sensitive fields in audit logs should be redacted or hashed.
+
+### 11.5 Admin Controls
+
+Only admin users can create/modify/delete other users. Only admin users can view all users' data. Regular users can only manage their own API keys and view their own data.
+
+---
+
+## 12. PERFORMANCE REQUIREMENTS
+
+### 12.1 Latency Targets
+
+Market data update latency (exchange to UI): under 200ms median. Spread calculation latency: under 50ms. API response time: under 100ms for simple queries. WebSocket broadcast latency: under 50ms from Redis to client.
+
+### 12.2 Throughput Requirements
+
+Support 100 concurrent WebSocket connections. Handle 11 exchange connections simultaneously. Process thousands of ticker updates per second across all exchanges.
+
+### 12.3 Resource Limits
+
+Market data service memory: under 2GB. Backend API memory: under 1GB. Redis memory: implement TTLs to prevent unbounded growth.
+
+---
+
+## 13. MONITORING AND OBSERVABILITY
+
+### 13.1 Metrics (Prometheus)
+
+Market data service: connection status per exchange, message rate per exchange, spread calculation rate, Redis publish rate.
+
+Backend API: request count and latency by endpoint, WebSocket connection count, authentication success/failure rate.
+
+### 13.2 Logging
+
+Structured JSON logging for all services. Log levels: debug for development, info for production. Include correlation IDs for request tracing.
+
+### 13.3 Health Checks
+
+Each service exposes health check endpoint. Docker/Kubernetes can use for orchestration. Health checks verify database and Redis connectivity.
+
+---
+
+## 14. TESTING REQUIREMENTS
+
+### 14.1 Unit Tests
+
+Exchange connector parsing logic. Spread calculation logic. API key encryption/decryption. Authentication flows.
+
+### 14.2 Integration Tests
+
+End-to-end API flows. WebSocket subscription and broadcasting. Database operations.
+
+### 14.3 Simulation Mode
+
+Paper trading mode that simulates order execution using current orderbook data. Walk-the-book algorithm to estimate fill prices and slippage. Identical UI flow to live trading for user practice.
+
+---
+
+## 15. DEPLOYMENT
+
+### 15.1 Local Development
+
+Docker Compose for PostgreSQL and Redis. npm scripts for starting services individually. Hot reload for frontend development.
+
+### 15.2 Production Deployment
+
+Kubernetes deployment manifests or Helm charts. Separate deployments for each service. Horizontal scaling for backend API. Single instance for market data service (or leader election for HA). Co-located execution service near exchange servers.
+
+### 15.3 Configuration Management
+
+Environment-specific configuration via environment variables. Secrets management via Kubernetes secrets or external vault.
+
+---
+
+## 16. KNOWN TECHNICAL CHALLENGES AND SOLUTIONS
+
+### 16.1 Exchange API Inconsistencies
+
+Each exchange has different API conventions for field types (string vs number), response wrapping, WebSocket message formats, and compression. Solution: exchange-specific adapters with thorough testing against real API responses.
+
+### 16.2 WebSocket Connection Management
+
+Exchanges may drop connections, rate limit, or require periodic ping/pong. Solution: automatic reconnection with exponential backoff, heartbeat monitoring, connection health tracking.
+
+### 16.3 Data Synchronization
+
+WebSocket updates may arrive out of order or with gaps. Solution: sequence number tracking where available, periodic REST resync, local orderbook reconstruction with validation.
+
+### 16.4 Real-time UI Updates
+
+High-frequency updates can overwhelm the browser. Solution: throttle updates to reasonable frequency (100-500ms), batch updates where possible, use efficient React rendering patterns.
+
+### 16.5 Historical Data Bootstrap
+
+New deployments have no historical spread data for charts. Solution: generate synthetic candles from current data, clearly indicate when showing limited history, accumulate real history over time.
+
+---
+
+## 17. FUTURE ENHANCEMENTS (POST-MVP)
+
+Atomic execution mode with two-phase commit across exchanges. Historical backtest engine with L2 orderbook replay. Advanced slippage modeling with machine learning. Multi-leg strategies beyond simple spreads. Mobile-responsive UI or native mobile app. Alert system for spread thresholds. Automated trading based on rules. Additional exchanges beyond initial 11.
+
+---
+
+This specification provides complete guidance for rebuilding the CrossSpread futures arbitrage platform from scratch, incorporating all lessons learned and implementation details from the current codebase.

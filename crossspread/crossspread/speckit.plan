@@ -1,0 +1,108 @@
+CrossSpread — Implementation Plan (speckit.plan)
+===============================================
+
+Overview
+--------
+This plan converts the Complete Project Specification v2.0 into an ordered, timeboxed delivery roadmap for the MVP. It breaks the work into 6-week milestones, with explicit tickets, owners (role-level), acceptance criteria, and risks.
+
+Milestone 0 — Prep & Infra (Week 0–2)
+-------------------------------------
+Goal: Repository scaffold, CI, local dev infra and bare DB schema.
+Key tasks:
+- A0.1 Repo skeleton & CI pipeline (1d) — create monorepo layout, GitHub Actions pipeline skeleton, PR checks (lint, typecheck). Owner: Tech Lead.
+- A0.2 Docker Compose for dev (1d) — postgres, redis, prometheus, grafana (dev dashboards). Owner: DevOps.
+- A0.3 DB schema & initial migrations (2d) — users, api_keys (encrypted column), spreads, spread_history, spread_candles, orders, positions, audit_logs. Owner: Backend.
+- A0.4 Dev README + .env.example (0.5d) — clear dev run steps. Owner: Tech Lead.
+
+Acceptance: `docker-compose up` starts services; `npx prisma migrate dev` applies migrations; CI runs lint/type tests.
+
+Milestone 1 — Connectors & Market Data (Week 3–6)
+------------------------------------------------
+Goal: Implement connector facade, adapters for 4 exchanges (Binance, Bybit, OKX, KuCoin), REST discovery + selective WS subscriptions, normalize streams to Redis.
+Key tasks:
+- B1.1 Connector interface & tests (2d) — define adapter API, unit tests for normalization helpers. Owner: MD-Eng.
+- B1.2 Binance adapter (WS L2 + REST resync) (4d) — include klines endpoint. Owner: MD-Eng.
+- B1.3 Bybit adapter (WS L2 + REST resync) (4d) — include klines endpoint. Owner: MD-Eng.
+- B1.4 OKX adapter (3d) and KuCoin adapter (3d). Owner: MD-Eng.
+- B1.5 Redis Streams publisher & schema docs (2d). Owner: MD-Eng.
+- B1.6 End-to-end smoke (2d) — discover instruments via REST, compute spreads, publish to Redis. Owner: Backend + MD-Eng.
+
+Acceptance: MD service publishes normalized `spread:*` hashes and `orderbook:*` streams; backend can read and return spreads via `/api/v1/spreads`.
+
+Milestone 2 — Spread Engine & Charts (Week 7–10)
+-----------------------------------------------
+Goal: Spread discovery worker, historical spread recording, candle aggregation, and frontend integration for spread list & spread detail charts.
+Key tasks:
+- C2.1 Spread discovery worker & scoring (3d) — compute spreads across pairs, score by spread%, volume, funding. Owner: Backend.
+- C2.2 Spread history writer (2d) — record throttled history in DB and publish. Owner: Backend.
+- C2.3 Candle aggregation service (2d) — create spread_candles 1m/5m/15m/1h. Owner: Backend.
+- C2.4 Frontend: spread list + SpreadDetail read-only (5d) — tables, chart (lightweight-charts), dual orderbook UI. Owner: Frontend.
+- C2.5 API endpoints: `/spreads`, `/spreads/{id}`, `/spreads/{id}/candles` (2d). Owner: Backend.
+
+Acceptance: UI displays spread list; clicking spread shows candlestick chart with historical data (if available) and real-time updates; candles API returns aggregated OHLC.
+
+Milestone 3 — Slicing Engine & Execution (Week 11–14)
+--------------------------------------------------
+Goal: Execution microservice (Rust) prototype capable of sliced limit order placement and sim mode integration.
+Key tasks:
+- D3.1 Execution service skeleton (gRPC/REST API) (2d) — secure internal auth. Owner: Execution Eng.
+- D3.2 Adapter for Binance orders & fills (5d) — place limit, cancel, query order. Owner: Execution Eng.
+- D3.3 Slicing engine & slice scheduler (5d) — default 5% slices, interval 100ms, adaptive sizing. Owner: Execution Eng.
+- D3.4 Sim mode integration with backend (3d) — simulate fills using L2 walk-the-book. Owner: Backend + Execution.
+- D3.5 Emergency exit flow (2d) — aggressive limit crossing behavior and audit. Owner: Execution Eng.
+
+Acceptance: `POST /api/v1/trade/enter` in `mode: sim` returns simulated sliced orders and final position with PnL; execution service can place limit orders against exchange testnet (where available).
+
+Milestone 4 — Trade Ticket, Admin & Security (Week 15–18)
+------------------------------------------------------
+Goal: Full trade path UI, admin user management, API key encryption, audits, and security hardening.
+Key tasks:
+- E4.1 Trade ticket UI + logs (4d) — enter size_in_coins, slicing controls, execution status display. Owner: Frontend.
+- E4.2 Admin UI: create users, set expiry (3d). Owner: Frontend + Backend.
+- E4.3 API key CRUD & encryption (3d) — AES-256-GCM for MVP; rotate instructions. Owner: Backend.
+- E4.4 Audit logs & immutable actions (2d). Owner: Backend.
+- E4.5 Security review & TLS wiring (2d). Owner: DevOps + Security.
+
+Acceptance: Admin can create users and add encrypted API keys; trade ticket can start sim trades and display slices and fills; audit rows present for every trade action.
+
+Milestone 5 — Testing, Observability & Ops (Week 19–22)
+---------------------------------------------------
+Goal: Add monitoring, structured logs, metrics, CI integration tests, and run acceptance scenarios.
+Key tasks:
+- F5.1 Prometheus metrics + Grafana dashboards (3d). Owner: DevOps.
+- F5.2 Structured logging & correlation IDs (2d). Owner: Backend + MD-Eng.
+- F5.3 Acceptance tests (sim E2E, security, latency) (5d). Owner: QA.
+- F5.4 Operator runbook + emergency procedures (2d). Owner: Ops.
+
+Acceptance: All acceptance tests pass in CI; dashboards available and alerts configured for critical thresholds (redis memory, execution errors, fill latency).
+
+Backlog & Post-MVP
+-------------------
+- Add remaining exchange adapters (MEXC, Bitget, Gate.io, BingX, CoinEx, LBank, HTX) — incremental adapters each 2–4d.
+- Atomic execution mode (research + PoC) — longer-term epic.
+- Backtest engine with L2 replay — post-MVP.
+
+Dependencies & Constraints
+-------------------------
+- Requires exchange API keys for testnet/live testing; some exchanges lack testnets — simulation mandatory for those.
+- Co-located execution requires separate infrastructure and potential security review.
+
+Risks & Mitigations
+-------------------
+- Exchange API changes: keep adapters small and mockable; maintain contract tests using recorded API responses.
+- Rate limits: implement per-exchange throttling and retries; surface metrics for throttling events.
+- Security of API keys: require encryption at rest and restrict internal service access via service secret and network controls.
+
+Delivery Checklist (pre-release)
+-------------------------------
+- [ ] Docker Compose runs dev environment
+- [ ] Migrations applied and DB seeded (admin user)
+- [ ] MD-ingest publishes normalized feeds for 4 core exchanges
+- [ ] Backend exposes required APIs and WS gateway
+- [ ] Frontend displays spread list and spread detail with candles
+- [ ] Sim E2E acceptance test passes (CI)
+- [ ] API keys encrypted and audit logs present
+
+Estimated total (MVP): 22 weeks (can be compressed by parallelizing teams; minimum viable demo by Week 10 if only sim & read-only UI required).
+
+Generated: 2025-11-30
